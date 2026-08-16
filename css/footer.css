@@ -1,0 +1,14 @@
+/* ---------- Footer ---------- */
+
+footer {
+    background: var(--color-bg-panel);
+    border-top: var(--border-accent);
+    padding: 25px 20px;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--color-text-muted);
+}

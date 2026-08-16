@@ -1,0 +1,80 @@
+/* =========================================================
+   INTERNLINK — HOME PAGE
+   FINAL THEME
+   ========================================================= */
+
+.hero {
+    min-height: 75vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 80px 20px;
+
+    background: var(--page-bg);
+}
+
+.hero-content {
+    max-width: 850px;
+}
+
+.hero h1 {
+    font-size: 58px;
+    margin-bottom: 20px;
+
+    color: var(--text-dark);
+}
+
+.hero .tagline {
+    font-size: 24px;
+
+    color: var(--sidebar-active);
+
+    margin-bottom: 20px;
+
+    font-weight: 600;
+}
+
+.hero .description {
+    max-width: 650px;
+
+    margin: 0 auto 35px;
+
+    font-size: 17px;
+
+    color: var(--text-muted);
+}
+
+.hero .btn {
+    display: inline-block;
+
+    width: auto;
+    min-width: 180px;
+
+    padding: 14px 30px;
+
+    background: var(--gold);
+
+    color: var(--sidebar-dark);
+
+    border-radius: var(--radius-md);
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    box-shadow: var(--shadow-gold);
+
+    transition: 0.25s;
+}
+
+.hero .btn:hover {
+    background: var(--gold-hover);
+
+    color: var(--white);
+
+    transform: translateY(-2px);
+}

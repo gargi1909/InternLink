@@ -1,0 +1,53 @@
+/* =========================================================
+   INTERNLINK — NAVBAR
+   FINAL THEME
+   ========================================================= */
+
+header {
+    width: 100%;
+    padding: 18px 50px;
+    background: var(--sidebar-dark);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav > div:last-child {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+nav a {
+    color: #D5E3DC;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.25s;
+}
+
+nav a:hover {
+    color: var(--gold);
+}
+
+nav .logo {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+
+    background: var(--white);
+    color: var(--sidebar-dark);
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 17px;
+    font-weight: 800;
+}

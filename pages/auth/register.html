@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register | InternLink</title>
+
+    <link rel="stylesheet" href="../../css/theme.css">
+    <link rel="stylesheet" href="../../css/auth.css">
+</head>
+
+<body>
+
+    <main class="auth-page">
+
+        <div class="auth-card">
+
+            <div class="auth-logo">
+                IL
+            </div>
+
+            <h1>Create Account</h1>
+
+            <p class="auth-subtitle">
+                Join InternLink and manage your internship journey
+            </p>
+
+            <form>
+
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your full name"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="role">Register As</label>
+
+                    <select id="role" required>
+                        <option value="">Select your role</option>
+                        <option value="student">Student</option>
+                        <option value="company">Company</option>
+                        <option value="faculty">Faculty</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Create a password"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+
+                    <input
+                        type="password"
+                        id="confirm-password"
+                        placeholder="Confirm your password"
+                        required
+                    >
+                </div>
+
+                <button type="submit">
+                    Create Account
+                </button>
+
+            </form>
+
+            <p class="auth-bottom-text">
+                Already have an account?
+                <a href="login.html">Login</a>
+            </p>
+
+            <a href="../../index.html" class="back-home">
+                ← Back to Home
+            </a>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>
