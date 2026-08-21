@@ -13,10 +13,402 @@
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/footer.css">
 
+    <!-- Modern Home Page Styling -->
+    <style>
+
+        /* ================= HOME PAGE ================= */
+
+        body {
+            overflow-x: hidden;
+        }
+
+        .home-wrapper {
+            position: relative;
+            min-height: calc(100vh - 90px);
+            overflow: hidden;
+        }
+
+
+        /* ---------- Decorative Background ---------- */
+
+        .decor {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .decor-one {
+            width: 420px;
+            height: 420px;
+            background: rgba(38, 115, 77, 0.07);
+            top: -180px;
+            left: -150px;
+        }
+
+        .decor-two {
+            width: 350px;
+            height: 350px;
+            background: rgba(212, 167, 44, 0.07);
+            right: -130px;
+            bottom: -120px;
+        }
+
+        .decor-three {
+            width: 180px;
+            height: 180px;
+            border: 1px solid rgba(38, 115, 77, 0.12);
+            right: 12%;
+            top: 15%;
+        }
+
+
+        /* ---------- Hero ---------- */
+
+        .modern-hero {
+            position: relative;
+            z-index: 1;
+
+            min-height: 620px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 80px 20px 60px;
+        }
+
+
+        .hero-content-modern {
+            max-width: 900px;
+            margin: auto;
+        }
+
+
+        /* ---------- Badge ---------- */
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 8px 16px;
+
+            background: #FFF4D6;
+            color: #A87900;
+
+            border: 1px solid #EBD79C;
+            border-radius: 30px;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            margin-bottom: 22px;
+
+            box-shadow: 0 5px 15px rgba(212, 167, 44, 0.12);
+        }
+
+
+        .hero-badge span {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #D4A72C;
+        }
+
+
+        /* ---------- Main Heading ---------- */
+
+        .hero-content-modern h1 {
+            font-size: clamp(42px, 6vw, 72px);
+
+            line-height: 1.08;
+
+            color: #18352A;
+
+            margin-bottom: 20px;
+
+            letter-spacing: -1.5px;
+        }
+
+
+        .hero-content-modern h1 .highlight {
+            color: #26734D;
+        }
+
+
+        /* ---------- Tagline ---------- */
+
+        .modern-tagline {
+            font-size: clamp(20px, 3vw, 28px);
+
+            font-weight: 600;
+
+            color: #26734D;
+
+            margin-bottom: 18px;
+        }
+
+
+        /* ---------- Description ---------- */
+
+        .modern-description {
+            max-width: 690px;
+
+            margin: 0 auto 32px;
+
+            color: #68776F;
+
+            font-size: 16px;
+
+            line-height: 1.8;
+        }
+
+
+        /* ---------- Buttons ---------- */
+
+        .hero-buttons-modern {
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+
+            margin-bottom: 45px;
+        }
+
+
+        .modern-primary {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            min-width: 190px;
+
+            padding: 14px 25px;
+
+            background: #D4A72C;
+
+            color: #062B1B;
+
+            border-radius: 12px;
+
+            text-decoration: none;
+
+            font-weight: 800;
+
+            font-size: 15px;
+
+            box-shadow: 0 7px 18px rgba(212, 167, 44, 0.25);
+
+            transition: all 0.25s ease;
+        }
+
+
+        .modern-primary:hover {
+            background: #B88A16;
+
+            color: white;
+
+            transform: translateY(-3px);
+
+            box-shadow: 0 10px 24px rgba(212, 167, 44, 0.30);
+        }
+
+
+        .modern-secondary {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            min-width: 150px;
+
+            padding: 13px 23px;
+
+            background: white;
+
+            color: #26734D;
+
+            border: 1px solid #CBD8D1;
+
+            border-radius: 12px;
+
+            text-decoration: none;
+
+            font-weight: 700;
+
+            font-size: 15px;
+
+            transition: all 0.25s ease;
+        }
+
+
+        .modern-secondary:hover {
+            border-color: #26734D;
+
+            background: #EEF7F1;
+
+            transform: translateY(-3px);
+        }
+
+
+        /* ---------- Feature Cards ---------- */
+
+        .feature-row {
+            max-width: 920px;
+
+            margin: 0 auto;
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 16px;
+
+            text-align: left;
+        }
+
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.88);
+
+            border: 1px solid #E2E9E5;
+
+            border-radius: 16px;
+
+            padding: 20px;
+
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+
+            transition: all 0.25s ease;
+        }
+
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.09);
+
+            border-color: #CBD8D1;
+        }
+
+
+        .feature-icon {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 11px;
+
+            margin-bottom: 13px;
+
+            font-size: 20px;
+        }
+
+
+        .feature-icon.green {
+            background: #E8F5EC;
+        }
+
+
+        .feature-icon.gold {
+            background: #FFF4D6;
+        }
+
+
+        .feature-icon.blue {
+            background: #EAF4FA;
+        }
+
+
+        .feature-card h3 {
+            color: #18352A;
+
+            font-size: 15px;
+
+            margin-bottom: 6px;
+        }
+
+
+        .feature-card p {
+            color: #68776F;
+
+            font-size: 12.5px;
+
+            line-height: 1.5;
+        }
+
+
+        /* ---------- Bottom Trust Text ---------- */
+
+        .home-note {
+            margin-top: 28px;
+
+            color: #87948D;
+
+            font-size: 12px;
+        }
+
+
+        /* ---------- Responsive ---------- */
+
+        @media (max-width: 750px) {
+
+            .modern-hero {
+                padding-top: 55px;
+            }
+
+            .feature-row {
+                grid-template-columns: 1fr;
+
+                max-width: 450px;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .hero-content-modern h1 {
+                font-size: 40px;
+            }
+
+            .modern-tagline {
+                font-size: 20px;
+            }
+
+            .hero-buttons-modern {
+                flex-direction: column;
+            }
+
+            .modern-primary,
+            .modern-secondary {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
 </head>
 
 
 <body>
+
 
     <!-- ================= NAVBAR ================= -->
 
@@ -58,39 +450,178 @@
     </header>
 
 
-    <!-- ================= MAIN CONTENT ================= -->
 
-    <main>
+    <!-- ================= HOME ================= -->
 
-        <section class="hero">
+    <main class="home-wrapper">
 
-            <div class="hero-content">
+
+        <!-- Decorative background -->
+
+        <div class="decor decor-one"></div>
+
+        <div class="decor decor-two"></div>
+
+        <div class="decor decor-three"></div>
+
+
+
+        <section class="modern-hero">
+
+
+            <div class="hero-content-modern">
+
+
+                <!-- Badge -->
+
+                <div class="hero-badge">
+
+                    <span></span>
+
+                    Smart Internship Management
+
+                </div>
+
+
+
+                <!-- Main Heading -->
 
                 <h1>
-                    Welcome to InternLink
+
+                    Welcome to
+
+                    <span class="highlight">
+                        InternLink
+                    </span>
+
                 </h1>
 
 
-                <p class="tagline">
+
+                <!-- Tagline -->
+
+                <p class="modern-tagline">
+
                     College Internship Management & Attendance System
+
                 </p>
 
 
-                <p class="description">
+
+                <!-- Description -->
+
+                <p class="modern-description">
+
                     Find internships, manage applications, track attendance,
-                    and monitor your internship journey in one place.
+                    and monitor your complete internship journey — all in one
+                    simple and connected platform.
+
                 </p>
 
 
-                <a href="pages/auth/login.html" class="btn">
-                    Get Started
-                </a>
+
+                <!-- Buttons -->
+
+                <div class="hero-buttons-modern">
+
+                    <a
+                        href="pages/auth/login.html"
+                        class="modern-primary"
+                    >
+                        Get Started →
+                    </a>
+
+
+                    <a
+                        href="pages/about.html"
+                        class="modern-secondary"
+                    >
+                        Explore InternLink
+                    </a>
+
+                </div>
+
+
+
+                <!-- Feature Cards -->
+
+                <div class="feature-row">
+
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon green">
+                            🎓
+                        </div>
+
+                        <h3>
+                            Internship Opportunities
+                        </h3>
+
+                        <p>
+                            Discover and manage internship opportunities
+                            through one connected platform.
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon gold">
+                            📊
+                        </div>
+
+                        <h3>
+                            Track Your Progress
+                        </h3>
+
+                        <p>
+                            Keep track of applications, attendance and
+                            daily internship activities.
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon blue">
+                            🔗
+                        </div>
+
+                        <h3>
+                            Connected Platform
+                        </h3>
+
+                        <p>
+                            Students, companies, faculty and administrators
+                            can work together in one system.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <p class="home-note">
+
+                    One platform • Multiple roles • Complete internship journey
+
+                </p>
+
 
             </div>
 
         </section>
 
+
     </main>
+
 
 
     <!-- ================= FOOTER ================= -->
