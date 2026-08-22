@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Work Log | Campus Portal</title>
+
+<style>
+
+/* =========================================================
+   INTERNLINK — WORK LOG THEME
+   Dark Green + White + Pastel Cards + Gold Highlights
+   ========================================================= */
+
+:root {
+
+    --sidebar-dark: #062B1B;
+    --sidebar-hover: #0B3D26;
+    --sidebar-active: #26734D;
+
+    --page-bg: #F7F9F6;
+    --white: #FFFFFF;
+
+    --hero-bg: #EEF7F1;
+    --hero-border: #DCEBE1;
+
+    --card-green: #E8F5EC;
+    --card-blue: #EAF4FA;
+    --card-purple: #F0ECFA;
+    --card-peach: #FFF0E5;
+
+    --green-icon: #26734D;
+    --blue-icon: #397A9E;
+    --purple-icon: #7258A8;
+    --peach-icon: #C86B35;
+
+    --gold: #D4A72C;
+    --gold-hover: #B88A16;
+    --gold-light: #FFF4D6;
+    --gold-text: #A87900;
+
+    --text-dark: #18352A;
+    --text-main: #26352E;
+    --text-muted: #68776F;
+
+    --border-light: #E2E9E5;
+    --border-medium: #CBD8D1;
+
+    --radius-lg: 20px;
+    --radius-md: 12px;
+    --radius-sm: 8px;
+
+    --shadow-card: 0 5px 20px rgba(0,0,0,0.07);
+    --shadow-hover: 0 10px 25px rgba(0,0,0,0.12);
+    --shadow-gold: 0 5px 15px rgba(212,167,44,0.25);
+
+    --font-main: "Segoe UI", Arial, sans-serif;
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-main);
+}
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+body {
+
+    min-height: 100vh;
+
+    background: var(--page-bg);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    color: var(--text-main);
+
+    padding: 30px;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
+.container {
+
+    width: 1150px;
+
+    max-width: 100%;
+
+    background: var(--white);
+
+    border-radius: var(--radius-lg);
+
+    overflow: hidden;
+
+    display: flex;
+
+    border: 1px solid var(--border-light);
+
+    box-shadow: var(--shadow-card);
+}
+
+
+/* =========================================================
+   LEFT BRANDING
+   ========================================================= */
+
+.brand {
+
+    width: 35%;
+
+    padding: 45px;
+
+    background:
+
+    linear-gradient(
+        rgba(6,43,27,0.94),
+        rgba(6,43,27,0.94)
+    ),
+
+    url("https://images.unsplash.com/photo-1556761175-b413da4baf72");
+
+    background-size: cover;
+
+    background-position: center;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+}
+
+
+/* LOGO */
+
+.logo {
+
+    width: 80px;
+
+    height: 80px;
+
+    background: var(--gold);
+
+    color: var(--sidebar-dark);
+
+    border-radius: 50%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 30px;
+
+    font-weight: bold;
+
+    margin-bottom: 25px;
+
+    box-shadow: var(--shadow-gold);
+
+}
+
+
+/* BRAND TITLE */
+
+.brand h1 {
+
+    color: #FFFFFF;
+
+    font-size: 38px;
+
+    margin-bottom: 15px;
+
+}
+
+
+/* BRAND DESCRIPTION */
+
+.brand p {
+
+    color: #C7D8CF;
+
+    line-height: 1.7;
+
+}
+
+
+/* =========================================================
+   CONTENT AREA
+   ========================================================= */
+
+.content {
+
+    width: 65%;
+
+    padding: 40px;
+
+    background: var(--page-bg);
+
+}
+
+
+/* PAGE TITLE */
+
+.content h2 {
+
+    text-align: center;
+
+    color: var(--text-dark);
+
+    font-size: 32px;
+
+    margin-bottom: 25px;
+
+}
+
+
+/* =========================================================
+   STUDENT DETAILS
+   ========================================================= */
+
+.details {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+
+}
+
+
+/* DETAILS CARD */
+
+.card {
+
+    background: var(--card-green);
+
+    border: 1px solid #C9E2D1;
+
+    padding: 15px;
+
+    border-radius: var(--radius-md);
+
+    box-shadow: var(--shadow-card);
+
+    transition: 0.25s;
+
+}
+
+
+/* CARD HOVER */
+
+.card:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow: var(--shadow-hover);
+
+}
+
+
+/* Pastel variation */
+
+.card:nth-child(2) {
+
+    background: var(--card-blue);
+
+    border-color: #C9DFEC;
+
+}
+
+.card:nth-child(3) {
+
+    background: var(--card-purple);
+
+    border-color: #D8D0EA;
+
+}
+
+.card:nth-child(4) {
+
+    background: var(--card-peach);
+
+    border-color: #F0D2BC;
+
+}
+
+
+/* CARD HEADING */
+
+.card h3 {
+
+    color: var(--green-icon);
+
+    font-size: 14px;
+
+}
+
+
+/* Different heading colors */
+
+.card:nth-child(2) h3 {
+
+    color: var(--blue-icon);
+
+}
+
+.card:nth-child(3) h3 {
+
+    color: var(--purple-icon);
+
+}
+
+.card:nth-child(4) h3 {
+
+    color: var(--peach-icon);
+
+}
+
+
+/* CARD CONTENT */
+
+.card p {
+
+    margin-top: 8px;
+
+    color: var(--text-dark);
+
+    font-weight: 600;
+
+}
+
+
+/* =========================================================
+   WORK LOG TABLE
+   ========================================================= */
+
+.table-box {
+
+    overflow-x: auto;
+
+    background: var(--white);
+
+    border-radius: var(--radius-md);
+
+    border: 1px solid var(--border-light);
+
+    box-shadow: var(--shadow-card);
+
+}
+
+
+/* TABLE */
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 600px;
+
+}
+
+
+/* TABLE HEADER */
+
+th {
+
+    background: var(--sidebar-dark);
+
+    color: #FFFFFF;
+
+    padding: 13px;
+
+    font-size: 14px;
+
+    text-align: center;
+
+}
+
+
+/* GOLD TOP BORDER */
+
+th:first-child {
+
+    border-radius: 10px 0 0 0;
+
+}
+
+th:last-child {
+
+    border-radius: 0 10px 0 0;
+
+}
+
+
+/* TABLE CELLS */
+
+td {
+
+    padding: 13px;
+
+    text-align: center;
+
+    border-bottom: 1px solid var(--border-light);
+
+    color: var(--text-main);
+
+    background: #FFFFFF;
+
+}
+
+
+/* ALTERNATING ROWS */
+
+tr:nth-child(even) td {
+
+    background: var(--hero-bg);
+
+}
+
+
+/* ROW HOVER */
+
+tr:hover td {
+
+    background: var(--gold-light);
+
+}
+
+
+/* COMPLETED */
+
+.completed {
+
+    color: var(--green-icon);
+
+    font-weight: bold;
+
+}
+
+
+/* PENDING */
+
+.pending {
+
+    color: var(--gold-text);
+
+    font-weight: bold;
+
+}
+
+
+/* =========================================================
+   SUMMARY
+   ========================================================= */
+
+.summary {
+
+    display: grid;
+
+    grid-template-columns: repeat(3,1fr);
+
+    gap: 15px;
+
+    margin-top: 25px;
+
+}
+
+
+/* SUMMARY CARD */
+
+.summary-card {
+
+    background: var(--card-green);
+
+    border: 1px solid #C9E2D1;
+
+    padding: 18px;
+
+    text-align: center;
+
+    border-radius: var(--radius-md);
+
+    box-shadow: var(--shadow-card);
+
+    transition: 0.25s;
+
+}
+
+
+/* SUMMARY CARD HOVER */
+
+.summary-card:hover {
+
+    transform: translateY(-4px);
+
+    box-shadow: var(--shadow-hover);
+
+}
+
+
+/* Different summary colors */
+
+.summary-card:nth-child(2) {
+
+    background: var(--card-blue);
+
+    border-color: #C9DFEC;
+
+}
+
+.summary-card:nth-child(3) {
+
+    background: var(--card-purple);
+
+    border-color: #D8D0EA;
+
+}
+
+
+/* SUMMARY NUMBER */
+
+.summary-card h2 {
+
+    color: var(--green-icon);
+
+    font-size: 28px;
+
+    margin-bottom: 0;
+
+}
+
+
+/* Different number colors */
+
+.summary-card:nth-child(2) h2 {
+
+    color: var(--blue-icon);
+
+}
+
+.summary-card:nth-child(3) h2 {
+
+    color: var(--purple-icon);
+
+}
+
+
+/* SUMMARY TEXT */
+
+.summary-card p {
+
+    margin-top: 8px;
+
+    color: var(--text-muted);
+
+    font-size: 13px;
+
+}
+
+
+/* =========================================================
+   SUPERVISOR REMARK
+   ========================================================= */
+
+.remark {
+
+    margin-top: 20px;
+
+    background: var(--gold-light);
+
+    border: 1px solid #EBD79C;
+
+    padding: 18px;
+
+    border-radius: var(--radius-md);
+
+    box-shadow: var(--shadow-card);
+
+}
+
+
+/* REMARK TITLE */
+
+.remark h3 {
+
+    color: var(--gold-text);
+
+    margin-bottom: 10px;
+
+}
+
+
+/* REMARK TEXT */
+
+.remark p {
+
+    color: var(--text-main);
+
+    line-height: 1.6;
+
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+button {
+
+    width: 100%;
+
+    margin-top: 20px;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: var(--radius-md);
+
+    background: var(--gold);
+
+    color: var(--sidebar-dark);
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: var(--shadow-gold);
+
+    transition: 0.25s;
+
+}
+
+
+/* BUTTON HOVER */
+
+button:hover {
+
+    background: var(--gold-hover);
+
+    color: #FFFFFF;
+
+    transform: translateY(-2px);
+
+    box-shadow: var(--shadow-hover);
+
+}
+
+
+/* SECOND BUTTON */
+
+button + button {
+
+    background: var(--sidebar-dark);
+
+    color: #FFFFFF;
+
+    box-shadow: none;
+
+}
+
+
+/* SECOND BUTTON HOVER */
+
+button + button:hover {
+
+    background: var(--sidebar-hover);
+
+    color: #FFFFFF;
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media(max-width:850px) {
+
+    body {
+
+        padding: 15px;
+
+        align-items: flex-start;
+
+    }
+
+
+    .container {
+
+        flex-direction: column;
+
+    }
+
+
+    .brand {
+
+        width: 100%;
+
+        min-height: 250px;
+
+    }
+
+
+    .content {
+
+        width: 100%;
+
+        padding: 30px;
+
+    }
+
+
+    .details,
+
+    .summary {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+
+@media(max-width:500px) {
+
+    body {
+
+        padding: 10px;
+
+    }
+
+
+    .brand {
+
+        padding: 30px;
+
+    }
+
+
+    .brand h1 {
+
+        font-size: 30px;
+
+    }
+
+
+    .content {
+
+        padding: 20px;
+
+    }
+
+
+    .content h2 {
+
+        font-size: 27px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<!-- =====================================================
+     BRAND PANEL
+     ===================================================== -->
+
+<div class="brand">
+
+    <div class="logo">
+        CP
+    </div>
+
+
+    <h1>
+        Campus Portal
+    </h1>
+
+
+    <p>
+
+        Track internship tasks,
+        daily progress and
+        professional growth.
+
+    </p>
+
+</div>
+
+
+
+<!-- =====================================================
+     CONTENT
+     ===================================================== -->
+
+<div class="content">
+
+
+<h2>
+    Internship Work Log
+</h2>
+
+
+
+<!-- STUDENT DETAILS -->
+
+<div class="details">
+
+
+<div class="card">
+
+    <h3>
+        Student Name
+    </h3>
+
+    <p>
+        Rahul Sharma
+    </p>
+
+</div>
+
+
+
+<div class="card">
+
+    <h3>
+        USN
+    </h3>
+
+    <p>
+        1XX23CS001
+    </p>
+
+</div>
+
+
+
+<div class="card">
+
+    <h3>
+        Company
+    </h3>
+
+    <p>
+        Google Technologies
+    </p>
+
+</div>
+
+
+
+<div class="card">
+
+    <h3>
+        Project
+    </h3>
+
+    <p>
+        Campus Management System
+    </p>
+
+</div>
+
+
+</div>
+
+
+
+<!-- WORK LOG TABLE -->
+
+<div class="table-box">
+
+<table>
+
+
+<tr>
+
+<th>
+    Date
+</th>
+
+<th>
+    Task Completed
+</th>
+
+<th>
+    Hours
+</th>
+
+<th>
+    Status
+</th>
+
+</tr>
+
+
+
+<tr>
+
+<td>
+    01 Aug 2026
+</td>
+
+<td>
+    Created Login Module
+</td>
+
+<td>
+    6 hrs
+</td>
+
+<td class="completed">
+    Completed
+</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>
+    02 Aug 2026
+</td>
+
+<td>
+    Database Integration
+</td>
+
+<td>
+    7 hrs
+</td>
+
+<td class="completed">
+    Completed
+</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>
+    03 Aug 2026
+</td>
+
+<td>
+    API Testing
+</td>
+
+<td>
+    4 hrs
+</td>
+
+<td class="pending">
+    In Progress
+</td>
+
+</tr>
+
+
+</table>
+
+</div>
+
+
+
+<!-- SUMMARY -->
+
+<div class="summary">
+
+
+<div class="summary-card">
+
+<h2>
+    17
+</h2>
+
+<p>
+    Total Hours
+</p>
+
+</div>
+
+
+
+<div class="summary-card">
+
+<h2>
+    75%
+</h2>
+
+<p>
+    Project Completion
+</p>
+
+</div>
+
+
+
+<div class="summary-card">
+
+<h2>
+    12
+</h2>
+
+<p>
+    Days Completed
+</p>
+
+</div>
+
+
+</div>
+
+
+
+<!-- SUPERVISOR REMARK -->
+
+<div class="remark">
+
+<h3>
+    Supervisor Remarks
+</h3>
+
+<p>
+
+Good progress. Continue improving coding quality and complete remaining modules on time.
+
+</p>
+
+</div>
+
+
+
+<!-- BUTTONS -->
+
+<button onclick="addLog()">
+
+    Add New Work Log
+
+</button>
+
+
+
+<button onclick="goHome()">
+
+    Back To Home
+
+</button>
+
+
+</div>
+
+</div>
+
+
+
+<script>
+
+function addLog(){
+
+    alert("New work log entry form will open");
+
+}
+
+
+function goHome(){
+
+    window.location.href="dashboard.html";
+
+}
+
+</script>
+
+
+</body>
+
+</html>

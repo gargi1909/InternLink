@@ -1,0 +1,640 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Internship Portal | Campus Portal</title>
+
+  <style>
+    /* =========================================================
+       INTERNLINK — STUDENT INTERNSHIP PORTAL THEME
+       Dark Green + White + Pastel Cards + Gold Highlights
+       ========================================================= */
+
+    :root {
+      --sidebar-dark: #062B1B;
+      --sidebar-hover: #0B3D26;
+      --sidebar-active: #26734D;
+
+      --page-bg: #F7F9F6;
+      --white: #FFFFFF;
+
+      --hero-bg: #EEF7F1;
+      --hero-border: #DCEBE1;
+
+      --card-green: #E8F5EC;
+      --card-blue: #EAF4FA;
+      --card-purple: #F0ECFA;
+      --card-peach: #FFF0E5;
+
+      --green-icon: #26734D;
+      --blue-icon: #397A9E;
+      --purple-icon: #7258A8;
+      --peach-icon: #C86B35;
+
+      --gold: #D4A72C;
+      --gold-hover: #B88A16;
+      --gold-light: #FFF4D6;
+      --gold-text: #A87900;
+
+      --text-dark: #18352A;
+      --text-main: #26352E;
+      --text-muted: #68776F;
+
+      --border-light: #E2E9E5;
+      --border-medium: #CBD8D1;
+
+      --radius-lg: 20px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+
+      --shadow-card: 0 5px 20px rgba(0, 0, 0, 0.07);
+      --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.12);
+      --shadow-gold: 0 5px 15px rgba(212, 167, 44, 0.25);
+
+      --font-main: "Segoe UI", Arial, sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: var(--font-main);
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--page-bg);
+      color: var(--text-main);
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      padding: 30px;
+    }
+
+    /* =========================================================
+       MAIN CONTAINER
+       ========================================================= */
+
+    .container {
+      width: 1150px;
+      max-width: 100%;
+
+      background: var(--white);
+
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+
+      display: flex;
+
+      border: 1px solid var(--border-light);
+
+      box-shadow: var(--shadow-card);
+    }
+
+    /* =========================================================
+       LEFT BRAND PANEL
+       ========================================================= */
+
+    .brand {
+      width: 35%;
+      padding: 45px;
+
+      background:
+        linear-gradient(
+          rgba(6, 43, 27, 0.94),
+          rgba(6, 43, 27, 0.94)
+        ),
+        url("https://images.unsplash.com/photo-1552664730-d307ca884978");
+
+      background-size: cover;
+      background-position: center;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+
+      background: var(--gold);
+      color: var(--sidebar-dark);
+
+      border-radius: 50%;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      font-size: 30px;
+      font-weight: bold;
+
+      margin-bottom: 25px;
+
+      box-shadow: var(--shadow-gold);
+    }
+
+    .brand h1 {
+      color: #FFFFFF;
+
+      font-size: 38px;
+
+      margin-bottom: 15px;
+    }
+
+    .brand p {
+      color: #C7D8CF;
+
+      line-height: 1.7;
+
+      max-width: 320px;
+    }
+
+    /* =========================================================
+       MAIN CONTENT
+       ========================================================= */
+
+    .content {
+      width: 65%;
+      padding: 40px;
+
+      background: var(--page-bg);
+    }
+
+    .content h2 {
+      text-align: center;
+
+      color: var(--text-dark);
+
+      font-size: 32px;
+
+      margin-bottom: 25px;
+    }
+
+    /* =========================================================
+       STUDENT INFORMATION
+       ========================================================= */
+
+    .student-info {
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 15px;
+
+      margin-bottom: 25px;
+    }
+
+    .card {
+      background: var(--card-green);
+
+      border: 1px solid #C9E2D1;
+
+      padding: 15px;
+
+      border-radius: var(--radius-md);
+
+      box-shadow: var(--shadow-card);
+
+      transition: 0.25s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+
+      box-shadow: var(--shadow-hover);
+    }
+
+    .card:nth-child(2) {
+      background: var(--card-blue);
+      border-color: #C9DFEC;
+    }
+
+    .card:nth-child(3) {
+      background: var(--card-purple);
+      border-color: #D8D0EA;
+    }
+
+    .card:nth-child(4) {
+      background: var(--card-peach);
+      border-color: #F0D2BC;
+    }
+
+    .card h3 {
+      color: var(--green-icon);
+
+      font-size: 14px;
+    }
+
+    .card:nth-child(2) h3 {
+      color: var(--blue-icon);
+    }
+
+    .card:nth-child(3) h3 {
+      color: var(--purple-icon);
+    }
+
+    .card:nth-child(4) h3 {
+      color: var(--peach-icon);
+    }
+
+    .card p {
+      margin-top: 8px;
+
+      color: var(--text-dark);
+
+      font-weight: 600;
+    }
+
+    /* =========================================================
+       INTERNSHIP CARDS
+       ========================================================= */
+
+    .internships {
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 20px;
+    }
+
+    .internship-card {
+      background: var(--white);
+
+      border: 1px solid var(--border-light);
+
+      border-radius: var(--radius-md);
+
+      padding: 20px;
+
+      box-shadow: var(--shadow-card);
+
+      transition: 0.25s;
+    }
+
+    .internship-card:hover {
+      transform: translateY(-4px);
+
+      box-shadow: var(--shadow-hover);
+
+      border-color: var(--border-medium);
+    }
+
+    .internship-card h3 {
+      color: var(--text-dark);
+
+      margin-bottom: 12px;
+
+      font-size: 18px;
+    }
+
+    .internship-card p {
+      margin: 8px 0;
+
+      color: var(--text-muted);
+
+      font-size: 14px;
+    }
+
+    /* =========================================================
+       ELIGIBILITY TAG
+       ========================================================= */
+
+    .tag {
+      display: inline-block;
+
+      padding: 6px 12px;
+
+      border-radius: 20px;
+
+      background: var(--gold-light);
+
+      color: var(--gold-text);
+
+      border: 1px solid #EBD79C;
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+      margin-top: 10px;
+    }
+
+    /* =========================================================
+       APPLY BUTTON
+       ========================================================= */
+
+    .apply-btn {
+      width: 100%;
+
+      margin-top: 15px;
+
+      padding: 12px;
+
+      border: none;
+
+      border-radius: var(--radius-md);
+
+      background: var(--gold);
+
+      color: var(--sidebar-dark);
+
+      font-weight: 700;
+
+      font-size: 15px;
+
+      cursor: pointer;
+
+      box-shadow: var(--shadow-gold);
+
+      transition: 0.25s;
+    }
+
+    .apply-btn:hover {
+      background: var(--gold-hover);
+
+      color: #FFFFFF;
+
+      transform: translateY(-2px);
+
+      box-shadow: var(--shadow-hover);
+    }
+
+    /* =========================================================
+       STATUS
+       ========================================================= */
+
+    .status {
+      margin-top: 25px;
+
+      background: var(--card-green);
+
+      color: var(--green-icon);
+
+      border: 1px solid #C9E2D1;
+
+      padding: 18px;
+
+      border-radius: var(--radius-md);
+
+      text-align: center;
+
+      font-weight: 700;
+
+      line-height: 1.8;
+
+      box-shadow: var(--shadow-card);
+    }
+
+    /* =========================================================
+       BACK BUTTON
+       ========================================================= */
+
+    .back-btn {
+      width: 100%;
+
+      margin-top: 20px;
+
+      padding: 13px;
+
+      border: none;
+
+      border-radius: var(--radius-md);
+
+      background: var(--sidebar-dark);
+
+      color: #FFFFFF;
+
+      font-size: 16px;
+
+      font-weight: 700;
+
+      cursor: pointer;
+
+      transition: 0.25s;
+    }
+
+    .back-btn:hover {
+      background: var(--sidebar-hover);
+
+      transform: translateY(-2px);
+
+      box-shadow: var(--shadow-hover);
+    }
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+
+    @media (max-width: 850px) {
+
+      body {
+        padding: 15px;
+      }
+
+      .container {
+        flex-direction: column;
+      }
+
+      .brand {
+        width: 100%;
+
+        min-height: 250px;
+
+        padding: 35px;
+      }
+
+      .content {
+        width: 100%;
+
+        padding: 30px;
+      }
+
+      .student-info,
+      .internships {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 500px) {
+
+      body {
+        padding: 10px;
+      }
+
+      .brand {
+        padding: 25px;
+      }
+
+      .brand h1 {
+        font-size: 30px;
+      }
+
+      .content {
+        padding: 20px;
+      }
+
+      .content h2 {
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- =====================================================
+         BRANDING
+         ===================================================== -->
+
+    <div class="brand">
+
+      <div class="logo">CP</div>
+
+      <h1>Campus Portal</h1>
+
+      <p>
+        Find internships, build professional skills and start your career
+        journey.
+      </p>
+
+    </div>
+
+
+    <!-- =====================================================
+         CONTENT
+         ===================================================== -->
+
+    <div class="content">
+
+      <h2>Internship Portal</h2>
+
+
+      <!-- STUDENT INFO -->
+
+      <div class="student-info">
+
+        <div class="card">
+          <h3>Student Name</h3>
+          <p>Rahul Sharma</p>
+        </div>
+
+        <div class="card">
+          <h3>USN</h3>
+          <p>1XX23CS001</p>
+        </div>
+
+        <div class="card">
+          <h3>Department</h3>
+          <p>Computer Science</p>
+        </div>
+
+        <div class="card">
+          <h3>CGPA</h3>
+          <p>8.2</p>
+        </div>
+
+      </div>
+
+
+      <!-- INTERNSHIPS -->
+
+      <div class="internships">
+
+        <div class="internship-card">
+
+          <h3>Google Summer Internship</h3>
+
+          <p>Role: Software Developer Intern</p>
+
+          <p>Duration: 3 Months</p>
+
+          <p>Mode: Hybrid</p>
+
+          <p>Stipend: ₹50,000/month</p>
+
+          <span class="tag">
+            Eligible
+          </span>
+
+          <button class="apply-btn">
+            Apply Now
+          </button>
+
+        </div>
+
+
+        <div class="internship-card">
+
+          <h3>Microsoft Internship</h3>
+
+          <p>Role: Web Development Intern</p>
+
+          <p>Duration: 6 Months</p>
+
+          <p>Mode: Online</p>
+
+          <p>Stipend: ₹40,000/month</p>
+
+          <span class="tag">
+            Eligible
+          </span>
+
+          <button class="apply-btn">
+            Apply Now
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- STATUS -->
+
+      <div class="status">
+
+        Internship Eligibility Status: ELIGIBLE ✅
+
+        <br />
+
+        CGPA Requirement: 8.2 ✔
+
+        <br />
+
+        Required Skills: Java, Python, Web Development ✔
+
+        <br />
+
+        Backlogs: 0 ✔
+
+      </div>
+
+
+      <!-- BACK BUTTON -->
+
+      <button class="back-btn" onclick="goHome()">
+        Back To Home
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+    function goHome() {
+      window.location.href = "dashboard.html";
+    }
+
+  </script>
+
+</body>
+</html>

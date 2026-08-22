@@ -1,0 +1,2353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InternLink | Student Dashboard</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+/* =========================================================
+   INTERNLINK — STUDENT DASHBOARD
+   DARK GREEN + WHITE + PASTEL CARDS + GOLD
+   ========================================================= */
+
+:root {
+    --sidebar-dark: #062B1B;
+    --sidebar-hover: #0B3D26;
+    --sidebar-active: #26734D;
+
+    --page-bg: #F7F9F6;
+    --white: #FFFFFF;
+
+    --hero-bg: #EEF7F1;
+    --hero-border: #DCEBE1;
+
+    --card-green: #E8F5EC;
+    --card-blue: #EAF4FA;
+    --card-purple: #F0ECFA;
+    --card-peach: #FFF0E5;
+
+    --green-icon: #26734D;
+    --blue-icon: #397A9E;
+    --purple-icon: #7258A8;
+    --peach-icon: #C86B35;
+
+    --gold: #D4A72C;
+    --gold-hover: #B88A16;
+    --gold-light: #FFF4D6;
+    --gold-text: #A87900;
+
+    --text-dark: #18352A;
+    --text-main: #26352E;
+    --text-muted: #68776F;
+
+    --border-light: #E2E9E5;
+    --border-medium: #CBD8D1;
+
+    --radius-lg: 20px;
+    --radius-md: 12px;
+    --radius-sm: 8px;
+
+    --shadow-card: 0 5px 20px rgba(0,0,0,0.07);
+    --shadow-hover: 0 10px 25px rgba(0,0,0,0.12);
+    --shadow-gold: 0 5px 15px rgba(212,167,44,0.25);
+
+    --font-main: "Inter", "Segoe UI", Arial, sans-serif;
+}
+
+/* ================= RESET ================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--page-bg);
+    color: var(--text-main);
+    font-family: var(--font-main);
+    min-height: 100vh;
+}
+
+button,
+input {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+ul {
+    list-style: none;
+}
+
+/* ================= APP ================= */
+
+.app {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar {
+    width: 250px;
+    flex-shrink: 0;
+    background: var(--sidebar-dark);
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    padding: 0 8px;
+}
+
+.logo > i {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--white);
+    color: var(--sidebar-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.logo h2 {
+    color: var(--white);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.logo p {
+    color: #AFC4B8;
+    font-size: 11px;
+    margin-top: 2px;
+}
+
+/* NAVIGATION */
+
+.sidebar nav ul {
+    list-style: none;
+}
+
+.sidebar nav li {
+    margin-bottom: 5px;
+}
+
+.sidebar nav a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #D5E3DC;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 12px 14px;
+    border-radius: var(--radius-sm);
+    transition: 0.25s;
+}
+
+.sidebar nav a:hover {
+    background: var(--sidebar-hover);
+    color: var(--white);
+    transform: translateX(2px);
+}
+
+.sidebar nav a.active {
+    background: var(--sidebar-active);
+    color: var(--white);
+    border-left: 3px solid var(--gold);
+}
+
+.sidebar nav a i {
+    width: 18px;
+    text-align: center;
+}
+
+/* SIDEBAR FOOTER */
+
+.sidebar-footer {
+    margin-top: auto;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding-top: 14px;
+}
+
+.sidebar-footer a {
+    display: block;
+    padding: 11px 14px;
+    color: #D5E3DC;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: 0.2s;
+}
+
+.sidebar-footer a:hover {
+    background: var(--sidebar-hover);
+    color: var(--white);
+}
+
+.sidebar-footer a i {
+    margin-right: 10px;
+}
+
+.sidebar-footer small {
+    display: block;
+    color: #71877B;
+    margin-top: 8px;
+    padding-left: 14px;
+    font-size: 11px;
+}
+
+/* ================= MAIN ================= */
+
+.main {
+    flex: 1;
+    background: var(--page-bg);
+    padding: 36px 44px;
+    min-width: 0;
+}
+
+/* ================= TOPBAR ================= */
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 26px;
+}
+
+.menu-btn {
+    display: none;
+}
+
+.greeting h1 {
+    font-size: 27px;
+    color: var(--text-dark);
+}
+
+.greeting p {
+    color: var(--text-muted);
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.wave {
+    font-size: 23px;
+}
+
+.top-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+/* SEARCH */
+
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    padding: 10px 13px;
+}
+
+.search-box i {
+    color: var(--green-icon);
+}
+
+.search-box input {
+    width: 170px;
+    border: none;
+    outline: none;
+    color: var(--text-main);
+    background: transparent;
+}
+
+.search-box input::placeholder {
+    color: var(--text-muted);
+}
+
+/* NOTIFICATION BUTTON */
+
+.icon-btn {
+    position: relative;
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--border-light);
+    border-radius: 50%;
+    background: var(--white);
+    color: var(--green-icon);
+}
+
+.icon-btn .dot {
+    position: absolute;
+    top: -4px;
+    right: -2px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    border-radius: 20px;
+    background: var(--gold);
+    color: var(--sidebar-dark);
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* PROFILE MINI */
+
+.profile-mini {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.profile-mini img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+}
+
+.profile-mini h4 {
+    color: var(--text-dark);
+    font-size: 14px;
+}
+
+.profile-mini small {
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+/* ================= HERO ================= */
+
+.hero {
+    background: var(--sidebar-dark);
+    border: 1px solid var(--sidebar-dark);
+    border-radius: var(--radius-lg);
+    padding: 34px;
+    margin-bottom: 26px;
+    box-shadow: var(--shadow-card);
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.hero-copy {
+    max-width: 700px;
+}
+
+.eyebrow {
+    display: inline-block;
+    background: var(--gold-light);
+    color: var(--gold-text);
+    border: 1px solid #EBD79C;
+    font-size: 12px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
+.hero h2 {
+    color: var(--white);
+    font-size: 27px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    color: #C7D8CF;
+    line-height: 1.7;
+    margin: 14px 0 22px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 13px 22px;
+    border-radius: var(--radius-md);
+    background: var(--gold);
+    color: var(--sidebar-dark);
+    font-weight: 700;
+    box-shadow: var(--shadow-gold);
+    transition: 0.25s;
+}
+
+.btn-primary:hover {
+    background: var(--gold-hover);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+.btn-ghost {
+    display: inline-block;
+    padding: 12px 21px;
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.4);
+    font-weight: 700;
+    transition: 0.25s;
+}
+
+.btn-ghost:hover {
+    background: var(--white);
+    color: var(--sidebar-dark);
+}
+
+.hero-quote {
+    max-width: 320px;
+    align-self: center;
+    color: var(--white);
+}
+
+.hero-quote i {
+    color: var(--gold);
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.hero-quote blockquote {
+    font-family: Georgia, serif;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.hero-quote figcaption {
+    color: #C7D8CF;
+    margin-top: 12px;
+    font-size: 12px;
+}
+
+/* ================= STATS ================= */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 26px;
+}
+
+.stat-card {
+    padding: 20px;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: var(--shadow-card);
+    transition: 0.25s;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+}
+
+.stat-card:nth-child(1) {
+    background: #A9D4B8;
+}
+
+.stat-card:nth-child(2) {
+    background: #A6CFE3;
+}
+
+.stat-card:nth-child(3) {
+    background: #C6B7E3;
+}
+
+.stat-card:nth-child(4) {
+    background: #F0BE94;
+}
+
+.stat-card > i {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.38);
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-card h3 {
+    font-size: 27px;
+    font-weight: 800;
+    color: var(--text-dark);
+}
+
+.stat-card p {
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+/* ================= DASHBOARD GRID ================= */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 20px;
+    margin-bottom: 26px;
+}
+
+.col-main,
+.col-side {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ================= CARDS ================= */
+
+.card {
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    box-shadow: var(--shadow-card);
+    transition: 0.25s;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.card > h2,
+.card-head h2 {
+    color: var(--text-dark);
+    font-size: 17px;
+}
+
+.card h2 i,
+.card-head h2 i {
+    color: var(--green-icon);
+    margin-right: 7px;
+}
+
+.card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+/* ================= PROFILE ================= */
+
+.profile-card {
+    background: #B9DCC5;
+    border-color: #99C9AB;
+}
+
+.profile-card .stamp {
+    background: var(--gold-light);
+    color: var(--gold-text);
+    border: 1px solid #EBD79C;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.student-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.student-info > img {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    border: 3px solid var(--white);
+}
+
+.student-facts h3 {
+    color: var(--text-dark);
+    font-size: 19px;
+    margin-bottom: 8px;
+}
+
+.student-facts dl {
+    display: grid;
+    gap: 5px;
+}
+
+.student-facts dl > div {
+    display: flex;
+    gap: 8px;
+}
+
+.student-facts dt {
+    color: var(--text-muted);
+    font-size: 12px;
+    min-width: 65px;
+}
+
+.student-facts dd {
+    color: var(--text-dark);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* ================= JOURNEY ================= */
+
+.trail {
+    position: relative;
+    padding-left: 8px;
+}
+
+.trail li {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 42px;
+    color: var(--text-main);
+    font-size: 14px;
+}
+
+.trail li:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 14px;
+    top: 31px;
+    width: 2px;
+    height: 22px;
+    background: var(--border-medium);
+}
+
+.trail .node {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--border-light);
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    z-index: 1;
+}
+
+.trail li.done .node {
+    background: var(--sidebar-active);
+    color: var(--white);
+}
+
+.trail li.current .node {
+    background: var(--gold);
+    color: var(--sidebar-dark);
+}
+
+.trail li.current {
+    font-weight: 700;
+}
+
+.trail li em {
+    margin-left: auto;
+    color: var(--gold-text);
+    font-size: 11px;
+    font-style: normal;
+}
+
+/* ================= COMPLETION ================= */
+
+.completion-card {
+    background: var(--card-green);
+}
+
+.completion-body {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-top: 15px;
+}
+
+.vine {
+    width: 80px;
+    height: 220px;
+}
+
+.vine-track {
+    fill: none;
+    stroke: #CBD8D1;
+    stroke-width: 4;
+    stroke-linecap: round;
+}
+
+.vine-path {
+    fill: none;
+    stroke: var(--sidebar-active);
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-dasharray: 500;
+    stroke-dashoffset: 90;
+}
+
+.leaf {
+    fill: var(--gold);
+}
+
+.check-list {
+    display: grid;
+    gap: 12px;
+}
+
+.check-list li {
+    color: var(--text-main);
+    font-size: 13px;
+}
+
+.check-list i {
+    margin-right: 7px;
+}
+
+.check-list .checked i {
+    color: var(--green-icon);
+}
+
+.check-list .unchecked i {
+    color: var(--peach-icon);
+}
+
+/* ================= GOALS ================= */
+
+.goal-progress {
+    background: var(--gold-light);
+    color: var(--gold-text);
+    border: 1px solid #EBD79C;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.task-list {
+    display: grid;
+    gap: 12px;
+}
+
+.task-list li {
+    color: var(--text-main);
+    font-size: 14px;
+}
+
+.task-list input {
+    accent-color: var(--sidebar-active);
+    margin-right: 7px;
+}
+
+/* ================= TABLE ================= */
+
+.ledger {
+    width: 100%;
+    border-collapse: collapse;
+    color: var(--text-main);
+}
+
+.ledger th {
+    text-align: left;
+    padding: 10px 8px;
+    background: var(--card-blue);
+    color: var(--text-dark);
+    font-size: 12px;
+}
+
+.ledger td {
+    padding: 11px 8px;
+    border-bottom: 1px solid var(--border-light);
+    font-size: 12px;
+}
+
+.ledger tr:last-child td {
+    border-bottom: none;
+}
+
+/* ================= MOTIVATION ================= */
+
+.card.motivation {
+    background: var(--sidebar-dark);
+    color: var(--white);
+}
+
+.motivation h2 {
+    color: var(--white);
+}
+
+.motivation h2 i {
+    color: var(--gold);
+}
+
+.motivation p {
+    color: #C7D8CF;
+    line-height: 1.6;
+    margin-top: 12px;
+}
+
+/* ================= RECOMMENDED ================= */
+
+.recommended {
+    margin-bottom: 26px;
+}
+
+.recommended > h2 {
+    color: var(--text-dark);
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.recommended > h2 i {
+    color: var(--green-icon);
+}
+
+.postcards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.postcard {
+    padding: 22px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-card);
+}
+
+.postcard:nth-child(1) {
+    background: var(--card-green);
+}
+
+.postcard:nth-child(2) {
+    background: var(--card-blue);
+}
+
+.postcard:nth-child(3) {
+    background: var(--card-purple);
+}
+
+.postmark {
+    display: inline-block;
+    background: var(--gold-light);
+    color: var(--gold-text);
+    border: 1px solid #EBD79C;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    margin-bottom: 12px;
+}
+
+.postcard h3 {
+    color: var(--text-dark);
+    font-size: 17px;
+    margin-bottom: 5px;
+}
+
+.postcard .company {
+    color: var(--text-muted);
+    margin-bottom: 15px;
+    font-size: 13px;
+}
+
+.btn-sm {
+    padding: 9px 16px;
+    font-size: 12px;
+}
+
+/* ================= SPLIT ROW ================= */
+
+.split-row {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 20px;
+    margin-bottom: 26px;
+}
+
+/* ================= NOTIFICATIONS ================= */
+
+.note-list {
+    display: grid;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.note {
+    position: relative;
+    background: var(--card-green);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    padding: 13px 40px 13px 14px;
+}
+
+.note p {
+    color: var(--text-main);
+    font-size: 13px;
+}
+
+.note span {
+    display: block;
+    color: var(--text-muted);
+    font-size: 11px;
+    margin-top: 5px;
+}
+
+.note-close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 20px;
+}
+
+.note-close:hover {
+    color: var(--peach-icon);
+}
+
+/* ================= QUICK ACTIONS ================= */
+
+.action-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.action-grid button {
+    border: 1px solid var(--border-light);
+    background: var(--white);
+    color: var(--text-dark);
+    border-radius: var(--radius-sm);
+    padding: 13px 8px;
+    font-size: 12px;
+    transition: 0.25s;
+}
+
+.action-grid button i {
+    display: block;
+    color: var(--green-icon);
+    font-size: 17px;
+    margin-bottom: 6px;
+}
+
+.action-grid button:hover {
+    background: var(--gold-light);
+    border-color: var(--gold);
+    color: var(--gold-text);
+}
+
+/* ================= ATTENDANCE ================= */
+
+.attendance {
+    background: var(--card-blue);
+    margin-bottom: 26px;
+}
+
+.attendance-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-top: 18px;
+}
+
+.attendance-grid > div {
+    background: rgba(255,255,255,0.55);
+    border-radius: var(--radius-sm);
+    padding: 18px;
+    text-align: center;
+}
+
+.attendance-grid h3 {
+    color: var(--text-dark);
+    font-size: 23px;
+}
+
+.attendance-grid p {
+    color: var(--text-muted);
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.pending-text {
+    color: var(--gold-text) !important;
+}
+
+/* ================= WORK LOG ================= */
+
+.worklog {
+    margin-bottom: 26px;
+}
+
+.tag-pending {
+    display: inline-block;
+    background: var(--gold-light);
+    color: var(--gold-text);
+    border: 1px solid #EBD79C;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+}
+
+/* ================= SKILLS ================= */
+
+.skills {
+    margin-bottom: 26px;
+}
+
+.skills > h2 {
+    color: var(--text-dark);
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.skills > h2 i {
+    color: var(--green-icon);
+}
+
+.skill-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.skill {
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    padding: 18px;
+    box-shadow: var(--shadow-card);
+}
+
+.skill-head {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.skill-head span {
+    color: var(--text-dark);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.skill-head span:last-child {
+    color: var(--gold-text);
+}
+
+.bar {
+    width: 100%;
+    height: 8px;
+    background: #DCEBE1;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.bar i {
+    display: block;
+    width: var(--w);
+    height: 100%;
+    background: var(--sidebar-active);
+    border-radius: 20px;
+}
+
+/* ================= ACHIEVEMENTS ================= */
+
+.achievements {
+    margin-bottom: 26px;
+}
+
+.achievements > h2 {
+    color: var(--text-dark);
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.achievements > h2 i {
+    color: var(--gold);
+}
+
+.medal-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.medal {
+    background: var(--gold-light);
+    border: 1px solid #EBD79C;
+    border-radius: var(--radius-md);
+    padding: 18px;
+    color: var(--text-dark);
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.medal i {
+    display: block;
+    color: var(--gold-text);
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+    text-align: center;
+    border-top: 1px solid var(--border-light);
+    padding: 25px 10px 10px;
+    color: var(--text-muted);
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1100px) {
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .dashboard-grid,
+    .split-row {
+        grid-template-columns: 1fr;
+    }
+
+    .skill-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .medal-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 850px) {
+
+    .sidebar {
+        width: 220px;
+    }
+
+    .main {
+        padding: 25px;
+    }
+
+    .topbar {
+        flex-wrap: wrap;
+    }
+
+    .top-right {
+        width: 100%;
+    }
+
+    .search-box {
+        flex: 1;
+    }
+
+    .hero {
+        flex-direction: column;
+    }
+
+    .hero-quote {
+        max-width: none;
+    }
+
+    .postcards {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .app {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        min-height: auto;
+    }
+
+    .main {
+        padding: 20px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .skill-grid,
+    .medal-row,
+    .attendance-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .topbar {
+        align-items: flex-start;
+    }
+
+    .top-right {
+        flex-wrap: wrap;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    .hero {
+        padding: 24px;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+        width: 100%;
+        text-align: center;
+    }
+
+    .student-info {
+        align-items: flex-start;
+    }
+
+    .completion-body {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .action-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .ledger {
+        display: block;
+        overflow-x: auto;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="logo">
+        <i class="fa-solid fa-seedling"></i>
+
+        <div>
+            <h2>InternLink</h2>
+            <p>Growth log &amp; attendance</p>
+        </div>
+    </div>
+
+    <nav>
+        <ul>
+
+            <li>
+                <a class="active" href="">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="profile.html" id="profile">
+                    <i class="fa-solid fa-user"></i>
+                    <span>My Profile</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="internships.html" id="internships">
+                    <i class="fa-solid fa-briefcase"></i>
+                    <span>Available Internships</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="application-status.html"id="application-status">
+                    <i class="fa-solid fa-file-circle-check"></i>
+                    <span>My Applications</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="attendance.html"id="attendance">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <span>Attendance</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="worklog.html"id="worklog">
+                    <i class="fa-solid fa-book-open"></i>
+                    <span>Daily Work Log</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="fa-solid fa-folder-open"></i>
+                    <span>Documents</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Reports</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="fa-solid fa-bell"></i>
+                    <span>Notifications</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </a>
+            </li>
+
+        </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+
+        <a href="#">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </a>
+
+        <small>InternLink v2.0</small>
+
+    </div>
+
+</aside>
+
+<div class="scrim" id="scrim"></div>
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+<!-- TOPBAR -->
+
+<header class="topbar">
+
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <div class="greeting">
+
+        <h1>
+            Good morning, rahul sharma
+            <span class="wave">👋</span>
+        </h1>
+
+        <p>
+            Day 42 of your growth log — every entry moves the vine forward.
+        </p>
+
+    </div>
+
+    <div class="top-right">
+
+        <div class="search-box">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                placeholder="Search internships"
+            >
+
+        </div>
+
+        <button class="icon-btn" aria-label="Notifications">
+
+            <i class="fa-solid fa-bell"></i>
+
+            <span class="dot">3</span>
+
+        </button>
+
+        <div class="profile-mini">
+
+            <img
+                src="https://i.pravatar.cc/100?img=32"
+                alt="rahul sharma's profile photo"
+            >
+
+            <div>
+
+                <h4>rahul sharma</h4>
+                <small>ISE · Sem 7</small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-copy">
+
+        <span class="eyebrow">
+            Field entry — 05 Aug
+        </span>
+
+        <h2>
+            Every application is a seed. Some take longer to sprout.
+        </h2>
+
+        <p>
+            Track internships, log your attendance, write up daily work,
+            and watch your progress take root — all in one logbook.
+        </p>
+
+        <div class="hero-actions">
+
+            <button class="btn btn-primary">
+                Browse internships
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+            <button class="btn btn-ghost">
+                Mark today's attendance
+            </button>
+
+        </div>
+
+    </div>
+
+    <figure class="hero-quote">
+
+        <i class="fa-solid fa-quote-left"></i>
+
+        <blockquote>
+            Success doesn't come from what you do occasionally.
+            It comes from what you do consistently.
+        </blockquote>
+
+        <figcaption>
+            — pinned to your logbook
+        </figcaption>
+
+    </figure>
+
+</section>
+
+<!-- ================= STATS ================= -->
+
+<section class="stats">
+
+    <div class="stat-card">
+
+        <i class="fa-solid fa-briefcase"></i>
+
+        <div>
+
+            <h3>24</h3>
+
+            <p>
+                Available internships
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="stat-card">
+
+        <i class="fa-solid fa-paper-plane"></i>
+
+        <div>
+
+            <h3>3</h3>
+
+            <p>
+                Applications sent
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="stat-card">
+
+        <i class="fa-solid fa-calendar-xmark"></i>
+
+        <div>
+
+            <h3>0%</h3>
+
+            <p>
+                Attendance so far
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="stat-card">
+
+        <i class="fa-solid fa-chart-pie"></i>
+
+        <div>
+
+            <h3>82%</h3>
+
+            <p>
+                Profile completion
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= DASHBOARD GRID ================= -->
+
+<section class="dashboard-grid">
+
+<div class="col-main">
+
+<!-- PROFILE -->
+
+<div class="card profile-card">
+
+    <div class="card-head">
+
+        <h2>
+            <i class="fa-solid fa-id-card"></i>
+            Student profile
+        </h2>
+
+        <span class="stamp">
+            Pending approval
+        </span>
+
+    </div>
+
+    <div class="student-info">
+
+        <img
+            src="https://i.pravatar.cc/150?img=32"
+            alt="rahul sharma"
+        >
+
+        <div class="student-facts">
+
+            <h3>rahul sharma</h3>
+
+            <dl>
+
+                <div>
+                    <dt>USN</dt>
+                    <dd>4MW22IS001</dd>
+                </div>
+
+                <div>
+                    <dt>Branch</dt>
+                    <dd>
+                        Information Science &amp; Engineering
+                    </dd>
+                </div>
+
+                <div>
+                    <dt>Semester</dt>
+                    <dd>7</dd>
+                </div>
+
+            </dl>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- JOURNEY -->
+
+<div class="card">
+
+    <h2>
+        <i class="fa-solid fa-route"></i>
+        Internship journey
+    </h2>
+
+    <ul class="trail">
+
+        <li class="done">
+
+            <span class="node">
+                <i class="fa-solid fa-check"></i>
+            </span>
+
+            Profile completed
+
+        </li>
+
+        <li class="done">
+
+            <span class="node">
+                <i class="fa-solid fa-check"></i>
+            </span>
+
+            Applied for internship
+
+        </li>
+
+        <li class="current">
+
+            <span class="node">
+                <i class="fa-solid fa-hourglass-half"></i>
+            </span>
+
+            Company review
+
+            <em>in progress</em>
+
+        </li>
+
+        <li>
+
+            <span class="node">3</span>
+
+            Internship starts
+
+        </li>
+
+        <li>
+
+            <span class="node">4</span>
+
+            Attendance begins
+
+        </li>
+
+    </ul>
+
+</div>
+
+<!-- PROFILE COMPLETION -->
+
+<div class="card completion-card">
+
+    <h2>
+        <i class="fa-solid fa-seedling"></i>
+        Profile completion
+    </h2>
+
+    <div class="completion-body">
+
+        <svg
+            class="vine"
+            viewBox="0 0 80 220"
+            aria-hidden="true"
+        >
+
+            <path
+                class="vine-track"
+                d="M40 210 C 10 170, 70 140, 40 100 C 15 70, 65 45, 40 12"
+            />
+
+            <path
+                class="vine-path"
+                data-percent="82"
+                d="M40 210 C 10 170, 70 140, 40 100 C 15 70, 65 45, 40 12"
+            />
+
+            <g class="leaves">
+
+                <circle
+                    class="leaf"
+                    data-threshold="15"
+                    cx="27"
+                    cy="180"
+                    r="6"
+                />
+
+                <circle
+                    class="leaf"
+                    data-threshold="35"
+                    cx="55"
+                    cy="150"
+                    r="6"
+                />
+
+                <circle
+                    class="leaf"
+                    data-threshold="55"
+                    cx="22"
+                    cy="110"
+                    r="6"
+                />
+
+                <circle
+                    class="leaf"
+                    data-threshold="72"
+                    cx="53"
+                    cy="70"
+                    r="6"
+                />
+
+                <circle
+                    class="leaf"
+                    data-threshold="90"
+                    cx="30"
+                    cy="25"
+                    r="6"
+                />
+
+            </g>
+
+        </svg>
+
+        <ul class="check-list">
+
+            <li class="checked">
+                <i class="fa-solid fa-check"></i>
+                Personal details
+            </li>
+
+            <li class="checked">
+                <i class="fa-solid fa-check"></i>
+                Resume uploaded
+            </li>
+
+            <li class="checked">
+                <i class="fa-solid fa-check"></i>
+                Skills added
+            </li>
+
+            <li class="checked">
+                <i class="fa-solid fa-check"></i>
+                Academic details
+            </li>
+
+            <li class="unchecked">
+                <i class="fa-solid fa-xmark"></i>
+                Portfolio website
+            </li>
+
+        </ul>
+
+    </div>
+
+</div>
+
+</div>
+
+<!-- ================= SIDE COLUMN ================= -->
+
+<div class="col-side">
+
+<!-- TODAY'S GOALS -->
+
+<div class="card">
+
+    <div class="card-head">
+
+        <h2>
+            <i class="fa-solid fa-bullseye"></i>
+            Today's goals
+        </h2>
+
+        <span class="goal-progress">
+            0/4
+        </span>
+
+    </div>
+
+    <ul class="task-list">
+
+        <li>
+            <label>
+                <input type="checkbox">
+                Apply for internship
+            </label>
+        </li>
+
+        <li>
+            <label>
+                <input type="checkbox">
+                Update resume
+            </label>
+        </li>
+
+        <li>
+            <label>
+                <input type="checkbox">
+                Complete aptitude practice
+            </label>
+        </li>
+
+        <li>
+            <label>
+                <input type="checkbox">
+                Learn HTML &amp; CSS
+            </label>
+        </li>
+
+    </ul>
+
+</div>
+
+<!-- UPCOMING -->
+
+<div class="card">
+
+    <h2>
+        <i class="fa-solid fa-calendar-days"></i>
+        Upcoming
+    </h2>
+
+    <table class="ledger">
+
+        <tr>
+            <th>Date</th>
+            <th>Task</th>
+        </tr>
+
+        <tr>
+            <td>08 Aug</td>
+            <td>Resume verification</td>
+        </tr>
+
+        <tr>
+            <td>10 Aug</td>
+            <td>Interview round</td>
+        </tr>
+
+        <tr>
+            <td>15 Aug</td>
+            <td>Company orientation</td>
+        </tr>
+
+    </table>
+
+</div>
+
+<!-- MOTIVATION -->
+
+<div class="card motivation">
+
+    <h2>
+        <i class="fa-solid fa-mug-hot"></i>
+        Daily motivation
+    </h2>
+
+    <p>
+        "Every expert was once a beginner. Keep learning,
+        keep improving, and opportunities will follow."
+    </p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= RECOMMENDED ================= -->
+
+<section class="recommended">
+
+    <h2>
+        <i class="fa-solid fa-compass"></i>
+        Recommended internships
+    </h2>
+
+    <div class="postcards">
+
+        <article class="postcard">
+
+            <span class="postmark">
+                Bangalore
+            </span>
+
+            <h3>
+                Frontend Developer
+            </h3>
+
+            <p class="company">
+                Google
+            </p>
+
+            <button class="btn btn-primary btn-sm">
+                Apply
+            </button>
+
+        </article>
+
+        <article class="postcard">
+
+            <span class="postmark">
+                Mysore
+            </span>
+
+            <h3>
+                Java Developer
+            </h3>
+
+            <p class="company">
+                Infosys
+            </p>
+
+            <button class="btn btn-primary btn-sm">
+                Apply
+            </button>
+
+        </article>
+
+        <article class="postcard">
+
+            <span class="postmark">
+                Hyderabad
+            </span>
+
+            <h3>
+                UI/UX Designer
+            </h3>
+
+            <p class="company">
+                Microsoft
+            </p>
+
+            <button class="btn btn-primary btn-sm">
+                Apply
+            </button>
+
+        </article>
+
+    </div>
+
+</section>
+
+<!-- ================= NOTIFICATIONS + QUICK ACTIONS ================= -->
+
+<section class="split-row">
+
+<div class="card notifications">
+
+    <h2>
+        <i class="fa-solid fa-bell"></i>
+        Recent notifications
+    </h2>
+
+    <div class="note-list">
+
+        <div class="note">
+
+            <p>
+                🎉 Your profile has reached
+                <b>82% completion</b>.
+            </p>
+
+            <span>
+                2 hours ago
+            </span>
+
+            <button class="note-close" aria-label="Dismiss">
+                &times;
+            </button>
+
+        </div>
+
+        <div class="note">
+
+            <p>
+                💼 New internship posted by
+                <b>TCS</b>.
+            </p>
+
+            <span>
+                Today
+            </span>
+
+            <button class="note-close" aria-label="Dismiss">
+                &times;
+            </button>
+
+        </div>
+
+        <div class="note">
+
+            <p>
+                📅 Resume verification scheduled on
+                <b>8 August</b>.
+            </p>
+
+            <span>
+                Yesterday
+            </span>
+
+            <button class="note-close" aria-label="Dismiss">
+                &times;
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="card quick-actions">
+
+    <h2>
+        <i class="fa-solid fa-stamp"></i>
+        Quick actions
+    </h2>
+
+    <div class="action-grid">
+
+        <button>
+            <i class="fa-solid fa-paper-plane"></i>
+            Apply
+        </button>
+
+        <button>
+            <i class="fa-solid fa-calendar-check"></i>
+            Attendance
+        </button>
+
+        <button>
+            <i class="fa-solid fa-book"></i>
+            Work log
+        </button>
+
+        <button>
+            <i class="fa-solid fa-file-arrow-up"></i>
+            Upload resume
+        </button>
+
+        <button>
+            <i class="fa-solid fa-folder-open"></i>
+            Documents
+        </button>
+
+        <button>
+            <i class="fa-solid fa-chart-column"></i>
+            Reports
+        </button>
+
+    </div>
+
+</div>
+
+</section>
+
+<!-- ================= ATTENDANCE ================= -->
+
+<section class="card attendance">
+
+    <h2>
+        <i class="fa-solid fa-calendar-check"></i>
+        Attendance summary
+    </h2>
+
+    <div class="attendance-grid">
+
+        <div>
+            <h3>0%</h3>
+            <p>Current attendance</p>
+        </div>
+
+        <div>
+            <h3>0</h3>
+            <p>Days present</p>
+        </div>
+
+        <div>
+            <h3>0</h3>
+            <p>Days absent</p>
+        </div>
+
+        <div>
+            <h3 class="pending-text">Pending</h3>
+            <p>Mentor approval</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= WORK LOG ================= -->
+
+<section class="card worklog">
+
+    <h2>
+        <i class="fa-solid fa-book-open"></i>
+        Recent work log
+    </h2>
+
+    <table class="ledger wide">
+
+        <tr>
+            <th>Date</th>
+            <th>Company</th>
+            <th>Task</th>
+            <th>Status</th>
+        </tr>
+
+        <tr>
+            <td>—</td>
+            <td>Not assigned</td>
+            <td>No work submitted</td>
+            <td>
+                <span class="tag-pending">
+                    Pending
+                </span>
+            </td>
+        </tr>
+
+    </table>
+
+</section>
+
+<!-- ================= SKILLS ================= -->
+
+<section class="skills">
+
+    <h2>
+        <i class="fa-solid fa-layer-group"></i>
+        Skill progress
+    </h2>
+
+    <div class="skill-grid">
+
+        <div class="skill">
+
+            <div class="skill-head">
+                <span>HTML</span>
+                <span>80%</span>
+            </div>
+
+            <div class="bar">
+                <i style="--w:80%"></i>
+            </div>
+
+        </div>
+
+        <div class="skill">
+
+            <div class="skill-head">
+                <span>CSS</span>
+                <span>75%</span>
+            </div>
+
+            <div class="bar">
+                <i style="--w:75%"></i>
+            </div>
+
+        </div>
+
+        <div class="skill">
+
+            <div class="skill-head">
+                <span>Java</span>
+                <span>60%</span>
+            </div>
+
+            <div class="bar">
+                <i style="--w:60%"></i>
+            </div>
+
+        </div>
+
+        <div class="skill">
+
+            <div class="skill-head">
+                <span>SQL</span>
+                <span>70%</span>
+            </div>
+
+            <div class="bar">
+                <i style="--w:70%"></i>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= ACHIEVEMENTS ================= -->
+
+<section class="achievements">
+
+    <h2>
+        <i class="fa-solid fa-award"></i>
+        Achievements
+    </h2>
+
+    <div class="medal-row">
+
+        <div class="medal">
+            <i class="fa-solid fa-file-arrow-up"></i>
+            Resume uploaded
+        </div>
+
+        <div class="medal">
+            <i class="fa-solid fa-star"></i>
+            Profile 82% complete
+        </div>
+
+        <div class="medal">
+            <i class="fa-solid fa-book"></i>
+            Skills added
+        </div>
+
+        <div class="medal">
+            <i class="fa-solid fa-rocket"></i>
+            Ready for internship
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <p>
+        © 2026 InternLink · Internship Management &amp; Attendance System
+        <br>
+        Designed for Students · Faculty · Companies
+    </p>
+
+</footer>
+
+</main>
+
+</div>
+
+<script>
+/* =========================
+   SIMPLE DASHBOARD JS
+   ========================= */
+
+/* Goal counter */
+
+const tasks = document.querySelectorAll('.task-list input');
+const goalProgress = document.querySelector('.goal-progress');
+
+function updateGoals() {
+
+    let completed = 0;
+
+    tasks.forEach(task => {
+        if (task.checked) {
+            completed++;
+        }
+    });
+
+    goalProgress.textContent = completed + "/" + tasks.length;
+}
+
+tasks.forEach(task => {
+    task.addEventListener('change', updateGoals);
+});
+
+/* Notification dismiss */
+
+document.querySelectorAll('.note-close').forEach(button => {
+
+    button.addEventListener('click', function () {
+
+        const note = this.closest('.note');
+
+        if (note) {
+            note.remove();
+        }
+
+    });
+
+});
+
+/* Sidebar mobile button */
+
+const menuBtn = document.getElementById('menuBtn');
+const sidebar = document.getElementById('sidebar');
+const scrim = document.getElementById('scrim');
+
+if (menuBtn) {
+
+    menuBtn.addEventListener('click', function () {
+        sidebar.classList.toggle('open');
+
+        if (scrim) {
+            scrim.classList.toggle('show');
+        }
+    });
+
+}
+
+if (scrim) {
+
+    scrim.addEventListener('click', function () {
+
+        sidebar.classList.remove('open');
+        scrim.classList.remove('show');
+
+    });
+
+}
+</script>
+
+</body>
+</html>

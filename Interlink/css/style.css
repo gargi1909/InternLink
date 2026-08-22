@@ -1,0 +1,159 @@
+/* =========================================================
+   CAMPUS PORTAL — SHARED PROJECT THEME
+   Import this file in every page so all members use the
+   same colors, fonts, and component styles.
+
+   Usage: <link rel="stylesheet" href="theme.css" />
+   ========================================================= */
+
+:root {
+  /* Core palette */
+  --color-bg-dark: #071f14;      /* deepest background */
+  --color-bg-panel: #0d2b1d;     /* card / container background */
+  --color-accent: #d4af37;       /* gold — headings, borders, links */
+  --color-accent-light: #f5d76e; /* gold gradient end */
+  --color-text: #ffffff;         /* primary text on dark bg */
+  --color-text-muted: #e5e5e5;   /* secondary text (paragraphs) */
+  --color-text-label: #dddddd;   /* form labels */
+  --color-error: #ff6b6b;
+  --color-success: #5cff9d;
+
+  /* Typography */
+  --font-main: "Segoe UI", sans-serif;
+
+  /* Spacing / shape */
+  --radius-lg: 25px;
+  --radius-md: 12px;
+  --radius-sm: 10px;
+  --shadow-glow: 0 0 40px rgba(212, 175, 55, 0.25);
+  --shadow-focus: 0 0 10px rgba(212, 175, 55, 0.3);
+  --shadow-hover: 0 8px 20px rgba(212, 175, 55, 0.4);
+  --border-accent: 1px solid rgba(212, 175, 55, 0.5);
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-main);
+  color: var(--color-text);
+}
+
+body {
+  background: var(--color-bg-dark);
+}
+
+/* ---------- Layout containers ---------- */
+.theme-container {
+  background: var(--color-bg-panel);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-glow);
+  overflow: hidden;
+}
+
+.theme-card {
+  background: var(--color-bg-panel);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+}
+
+/* ---------- Headings & text ---------- */
+h1, h2, h3 {
+  color: var(--color-accent);
+}
+
+p {
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* ---------- Buttons ---------- */
+button,
+.btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
+  color: var(--color-bg-dark);
+  font-size: 17px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover,
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* ---------- Form fields ---------- */
+label {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--color-text-label);
+  font-size: 14px;
+}
+
+input,
+select,
+textarea {
+  display: block;
+  width: 100%;
+  padding: 12px 15px;
+  background: var(--color-bg-dark);
+  border: var(--border-accent);
+  border-radius: var(--radius-sm);
+  outline: none;
+  color: var(--color-text);
+  font-size: 15px;
+}
+
+textarea {
+  resize: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-focus);
+}
+
+/* ---------- Status text ---------- */
+.error {
+  color: var(--color-error);
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+.success {
+  text-align: center;
+  color: var(--color-success);
+  margin-top: 15px;
+  font-size: 15px;
+}
+
+/* ---------- Utility ---------- */
+.logo {
+  width: 80px;
+  height: 80px;
+  background: var(--color-accent);
+  color: var(--color-bg-dark);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-weight: bold;
+}
