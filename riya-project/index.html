@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>InternLink | Company Dashboard</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+		<link rel="stylesheet" href="index.css" />
+	</head>
+	<body>
+		<div class="app-shell">
+			<aside class="sidebar" aria-label="Main navigation">
+				<div class="brand"><span class="brand-mark">IL</span><span>Intern<span class="brand-accent">Link</span></span></div>
+				<div class="workspace-label">COMPANY WORKSPACE</div>
+				<nav class="nav-list">
+					<button class="nav-item active" data-section="overview"><span class="nav-icon">+</span> Overview</button>
+					<button class="nav-item" data-section="internships"><span class="nav-icon">□</span> My internships <span class="nav-count">4</span></button>
+					<button class="nav-item" data-section="applications"><span class="nav-icon">≡</span> Applications <span class="nav-count coral">12</span></button>
+					<button class="nav-item" data-section="attendance"><span class="nav-icon">✓</span> Attendance approval <span class="nav-count coral">7</span></button>
+					<button class="nav-item" data-section="completion"><span class="nav-icon">◇</span> Feedback & completion</button>
+				</nav>
+				<div class="sidebar-bottom">
+					<button class="nav-item"><span class="nav-icon">?</span> Help center</button>
+					<div class="profile-mini"><div class="avatar">AR</div><div><strong>Riya Pawar</strong><small>Company admin</small></div><span class="more">•••</span></div>
+				</div>
+			</aside>
+
+			<main class="main-content">
+				<header class="topbar">
+					<button class="mobile-menu" aria-label="Open navigation">☰</button>
+					<div class="breadcrumb">Workspace <span>/</span> <strong id="breadcrumb-current">Overview</strong></div>
+					<div class="top-actions"><button class="icon-button" aria-label="Notifications">♢<i></i></button><div class="avatar top-avatar">AR</div></div>
+				</header>
+
+				<section class="page-section active-section" id="overview">
+					<div class="page-heading"><div><p class="eyebrow">WEDNESDAY, 19 AUGUST 2026</p><h1>Good morning, Riya.</h1><p class="subheading">Here’s what needs your attention today.</p></div><button class="primary-button open-modal"><span>+</span> Post internship</button></div>
+					<div class="stats-grid">
+						<article class="stat-card"><div class="stat-top"><span>Active internships</span><span class="stat-symbol green">↗</span></div><strong>04</strong><small><b>+1</b> this month</small></article>
+						<article class="stat-card"><div class="stat-top"><span>New applications</span><span class="stat-symbol coral">●</span></div><strong>12</strong><small><b>+5</b> since last week</small></article>
+						<article class="stat-card"><div class="stat-top"><span>Attendance to approve</span><span class="stat-symbol amber">◷</span></div><strong>07</strong><small>Due by <b>today</b></small></article>
+						<article class="stat-card"><div class="stat-top"><span>Awaiting completion</span><span class="stat-symbol blue">◇</span></div><strong>03</strong><small><b>2</b> due this week</small></article>
+					</div>
+					<div class="dashboard-grid">
+						<article class="panel activity-panel"><div class="panel-heading"><div><h2>Recent activity</h2><p>Keep up with your interns and applicants.</p></div><button class="text-button" data-section-target="applications">View all <span>→</span></button></div><div class="activity-list">
+							<div class="activity-row"><div class="activity-icon coral-bg">≡</div><div><strong>New application received</strong><p>Rahul Mehta applied for Product Design Intern</p></div><time>12 min ago</time></div>
+							<div class="activity-row"><div class="activity-icon amber-bg">◷</div><div><strong>Attendance needs approval</strong><p>Meera Shah submitted her log for 18 Aug</p></div><time>1 hr ago</time></div>
+							<div class="activity-row"><div class="activity-icon green-bg">✓</div><div><strong>Internship completed</strong><p>Aditya Kulkarni marked as completed</p></div><time>Yesterday</time></div>
+						</div></article>
+						<article class="panel quick-panel"><div class="panel-heading"><div><h2>Quick actions</h2><p>Common tasks, one click away.</p></div></div><div class="quick-actions"><button class="quick-action open-modal"><span class="quick-icon coral-bg">+</span><span><b>Post a new internship</b><small>Find your next intern</small></span><em>→</em></button><button class="quick-action" data-section-target="attendance"><span class="quick-icon amber-bg">◷</span><span><b>Review attendance</b><small>7 logs are waiting</small></span><em>→</em></button><button class="quick-action" data-section-target="completion"><span class="quick-icon blue-bg">◇</span><span><b>Give feedback</b><small>3 interns are awaiting</small></span><em>→</em></button></div></article>
+					</div>
+				</section>
+
+				<section class="page-section" id="internships"><div class="page-heading"><div><p class="eyebrow">YOUR OPEN ROLES</p><h1>My internships</h1><p class="subheading">Manage the opportunities your company has posted.</p></div><button class="primary-button open-modal"><span>+</span> Post internship</button></div><div class="filter-bar"><div class="search-box">⌕ <input placeholder="Search internships" /></div><button class="filter-button">All roles <span>⌄</span></button></div><div class="panel table-panel"><div class="table-header"><h2>Open internships <span>4</span></h2><span class="muted">Updated just now</span></div><div class="role-list"><div class="role-row"><div class="role-avatar pink">PD</div><div class="role-info"><strong>Product Design Intern</strong><span>Design · Bengaluru · 3 months</span></div><span class="status-pill live">Live</span><span class="applicant-total">8 applicants</span><button class="row-arrow">→</button></div><div class="role-row"><div class="role-avatar blue">FE</div><div class="role-info"><strong>Frontend Engineering Intern</strong><span>Engineering · Remote · 6 months</span></div><span class="status-pill live">Live</span><span class="applicant-total">14 applicants</span><button class="row-arrow">→</button></div><div class="role-row"><div class="role-avatar yellow">MR</div><div class="role-info"><strong>Marketing Research Intern</strong><span>Marketing · Mumbai · 2 months</span></div><span class="status-pill draft">Draft</span><span class="applicant-total">—</span><button class="row-arrow">→</button></div></div></div></section>
+
+				<section class="page-section" id="applications"><div class="page-heading"><div><p class="eyebrow">TALENT PIPELINE</p><h1>Applications</h1><p class="subheading">Review candidates and keep your hiring moving.</p></div><button class="secondary-button">Export list <span>↓</span></button></div><div class="filter-bar"><div class="search-box">⌕ <input placeholder="Search by name or role" /></div><button class="filter-button">All statuses <span>⌄</span></button><button class="filter-button">Newest first <span>⌄</span></button></div><div class="panel table-panel"><div class="table-header"><h2>Candidate applications <span>12</span></h2><span class="muted">12 total</span></div><div class="candidate-table"><div class="candidate-head"><span>Candidate</span><span>Applied for</span><span>Applied</span><span>Status</span><span></span></div><div class="candidate-row"><div class="candidate"><div class="avatar small-avatar lilac">RM</div><strong>Rahul Mehta</strong></div><span>Product Design Intern</span><span>19 Aug 2026</span><span class="status-pill review">In review</span><button class="row-arrow">→</button></div><div class="candidate-row"><div class="candidate"><div class="avatar small-avatar mint">SK</div><strong>Shreya Kapoor</strong></div><span>Frontend Engineering</span><span>18 Aug 2026</span><span class="status-pill shortlisted">Shortlisted</span><button class="row-arrow">→</button></div><div class="candidate-row"><div class="candidate"><div class="avatar small-avatar peach">VN</div><strong>Vikram Nair</strong></div><span>Product Design Intern</span><span>17 Aug 2026</span><span class="status-pill review">In review</span><button class="row-arrow">→</button></div></div></div></section>
+
+				<section class="page-section" id="attendance"><div class="page-heading"><div><p class="eyebrow">TIME TRACKING</p><h1>Attendance approval</h1><p class="subheading">Verify intern hours before they become payroll records.</p></div><button class="secondary-button">Download report <span>↓</span></button></div><div class="approval-banner"><div class="banner-icon">◷</div><div><strong>7 attendance logs need your review</strong><p>Approvals are due by the end of today.</p></div><button class="banner-button">Review next <span>→</span></button></div><div class="panel table-panel"><div class="table-header"><h2>Pending approvals <span>7</span></h2><button class="text-button">Approve all <span>✓</span></button></div><div class="attendance-list"><div class="attendance-row"><div class="avatar small-avatar mint">MS</div><div class="role-info"><strong>Meera Shah</strong><span>Product Design · 18 Aug 2026</span></div><strong class="hours">08:30 hrs</strong><span class="status-pill pending">Pending</span><button class="approve-button">Approve</button></div><div class="attendance-row"><div class="avatar small-avatar peach">AK</div><div class="role-info"><strong>Aditya Kulkarni</strong><span>Frontend Engineering · 18 Aug 2026</span></div><strong class="hours">07:45 hrs</strong><span class="status-pill pending">Pending</span><button class="approve-button">Approve</button></div><div class="attendance-row"><div class="avatar small-avatar lilac">NS</div><div class="role-info"><strong>Nisha Singh</strong><span>Marketing Research · 17 Aug 2026</span></div><strong class="hours">08:00 hrs</strong><span class="status-pill pending">Pending</span><button class="approve-button">Approve</button></div></div></div></section>
+
+				<section class="page-section" id="completion"><div class="page-heading"><div><p class="eyebrow">CLOSE THE LOOP</p><h1>Feedback & completion</h1><p class="subheading">Recognize great work and complete the internship journey.</p></div><button class="secondary-button">View completed <span>→</span></button></div><div class="completion-grid"><article class="panel completion-card"><div class="completion-top"><div class="avatar large-avatar peach">AK</div><span class="status-pill due">Due in 2 days</span></div><h2>Aditya Kulkarni</h2><p>Frontend Engineering Intern</p><div class="progress-label"><span>Internship progress</span><b>94%</b></div><div class="progress"><span style="width: 94%"></span></div><button class="primary-button full feedback-button">Give feedback <span>→</span></button></article><article class="panel completion-card"><div class="completion-top"><div class="avatar large-avatar mint">MS</div><span class="status-pill due">Due in 5 days</span></div><h2>Meera Shah</h2><p>Product Design Intern</p><div class="progress-label"><span>Internship progress</span><b>81%</b></div><div class="progress"><span style="width: 81%"></span></div><button class="primary-button full feedback-button">Give feedback <span>→</span></button></article><article class="panel completion-card completed-card"><div class="completion-top"><div class="avatar large-avatar lilac">RK</div><span class="status-pill completed">Completed</span></div><h2>Rohan Kapoor</h2><p>Marketing Research Intern</p><div class="completion-stamp">✓</div><button class="secondary-button full">View feedback <span>→</span></button></article></div></section>
+			</main>
+		</div>
+
+		<div class="modal-backdrop" id="internship-modal" aria-hidden="true"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button class="close-modal" aria-label="Close">×</button><p class="eyebrow">NEW OPPORTUNITY</p><h2 id="modal-title">Post an internship</h2><p class="modal-copy">Share a role with ambitious students looking for their next opportunity.</p><form id="internship-form"><label>Internship title<input required placeholder="e.g. Product Design Intern" /></label><div class="form-row"><label>Department<select><option>Design</option><option>Engineering</option><option>Marketing</option><option>Operations</option></select></label><label>Work mode<select><option>Hybrid</option><option>Remote</option><option>On-site</option></select></label></div><div class="form-row"><label>Location<input required placeholder="e.g. Bengaluru" /></label><label>Duration<select><option>3 months</option><option>6 months</option><option>12 months</option></select></label></div><label>Short description<textarea required placeholder="What will the intern work on?"></textarea></label><button class="primary-button full" type="submit">Publish internship <span>→</span></button></form></div></div>
+		<div class="toast" id="toast">Internship published successfully <span>✓</span></div>
+		<script src="index.js"></script>
+	</body>
+</html>
