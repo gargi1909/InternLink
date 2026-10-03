@@ -1,0 +1,236 @@
+// InternLink database schema (Prisma 6, PostgreSQL)
+// Any change to this file must be reviewed before merging, and the generated
+// migration folder must be committed together with the schema change.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ---------- Enums ----------
+
+enum Role {
+  STUDENT
+  COMPANY
+  FACULTY
+  ADMIN
+}
+
+enum InternshipStatus {
+  DRAFT
+  ACTIVE
+  CLOSED
+}
+
+enum ApplicationStatus {
+  PENDING
+  SHORTLISTED
+  ACCEPTED
+  REJECTED
+  WITHDRAWN
+}
+
+// Used by attendance and work logs
+enum ApprovalStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+// ---------- Models ----------
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String // bcrypt hash, never plaintext
+  role      Role
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  student       Student?
+  company       Company?
+  faculty       Faculty?
+  notifications Notification[]
+
+  @@map("users")
+}
+
+model Student {
+  id             Int      @id @default(autoincrement())
+  userId         Int      @unique
+  college        String?
+  course         String?
+  year           Int?
+  semester       Int?
+  usn            String?  @unique
+  cgpa           Decimal? @db.Decimal(4, 2)
+  academicStatus String?
+  department     String?
+  address        String?  @db.Text
+  phone          String?
+  skills         String?  @db.Text
+  resumeUrl      String?  @db.Text
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  applications Application[]
+  attendance   Attendance[]
+  workLogs     WorkLog[]
+  feedback     Feedback[]
+
+  @@map("students")
+}
+
+model Company {
+  id           Int      @id @default(autoincrement())
+  userId       Int      @unique
+  companyName  String
+  description  String?  @db.Text
+  website      String?
+  location     String?
+  contactEmail String?
+  contactPhone String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  internships Internship[]
+  feedback    Feedback[]
+
+  @@map("companies")
+}
+
+model Faculty {
+  id         Int      @id @default(autoincrement())
+  userId     Int      @unique
+  department String?
+  employeeId String?  @unique
+  phone      String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("faculty")
+}
+
+model Internship {
+  id           Int              @id @default(autoincrement())
+  companyId    Int
+  title        String
+  description  String?          @db.Text
+  department   String?
+  location     String?
+  workMode     String? // text on purpose (e.g. Remote / On-site / Hybrid)
+  duration     String?
+  requirements String?          @db.Text
+  status       InternshipStatus @default(DRAFT)
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+
+  company      Company       @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  applications Application[]
+  attendance   Attendance[]
+  workLogs     WorkLog[]
+  feedback     Feedback[]
+
+  @@index([companyId])
+  @@index([status])
+  @@map("internships")
+}
+
+model Application {
+  id           Int               @id @default(autoincrement())
+  studentId    Int
+  internshipId Int
+  status       ApplicationStatus @default(PENDING)
+  appliedAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+
+  student    Student    @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  internship Internship @relation(fields: [internshipId], references: [id], onDelete: Cascade)
+
+  // One application per student per internship
+  @@unique([studentId, internshipId])
+  @@index([internshipId])
+  @@map("applications")
+}
+
+model Attendance {
+  id           Int            @id @default(autoincrement())
+  studentId    Int
+  internshipId Int
+  date         DateTime       @db.Date
+  hours        Decimal        @db.Decimal(4, 2)
+  status       ApprovalStatus @default(PENDING)
+  remarks      String?        @db.Text
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+
+  student    Student    @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  internship Internship @relation(fields: [internshipId], references: [id], onDelete: Cascade)
+
+  // One attendance record per student per internship per date
+  @@unique([studentId, internshipId, date])
+  @@index([internshipId])
+  @@map("attendance")
+}
+
+model WorkLog {
+  id           Int            @id @default(autoincrement())
+  studentId    Int
+  internshipId Int
+  date         DateTime       @db.Date
+  description  String         @db.Text
+  hours        Decimal        @db.Decimal(4, 2)
+  status       ApprovalStatus @default(PENDING)
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+
+  student    Student    @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  internship Internship @relation(fields: [internshipId], references: [id], onDelete: Cascade)
+
+  @@index([studentId])
+  @@index([internshipId])
+  @@map("work_logs")
+}
+
+model Feedback {
+  id           Int      @id @default(autoincrement())
+  companyId    Int
+  studentId    Int
+  internshipId Int
+  rating       Int
+  comments     String?  @db.Text
+  createdAt    DateTime @default(now())
+
+  company    Company    @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  student    Student    @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  internship Internship @relation(fields: [internshipId], references: [id], onDelete: Cascade)
+
+  // One feedback record per student per internship
+  @@unique([studentId, internshipId])
+  @@index([companyId])
+  @@map("feedback")
+}
+
+model Notification {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  title     String
+  message   String   @db.Text
+  type      String   @default("GENERAL") // text on purpose, not an enum
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, isRead])
+  @@map("notifications")
+}
