@@ -545,57 +545,14 @@
 
 
       <!-- INTERNSHIPS -->
+      
 
-      <div class="internships">
+      <div class="internships" id="internshipList">
 
-        <div class="internship-card">
-
-          <h3>Google Summer Internship</h3>
-
-          <p>Role: Software Developer Intern</p>
-
-          <p>Duration: 3 Months</p>
-
-          <p>Mode: Hybrid</p>
-
-          <p>Stipend: ₹50,000/month</p>
-
-          <span class="tag">
-            Eligible
-          </span>
-
-          <button class="apply-btn">
-            Apply Now
-          </button>
-
-        </div>
-
-
-        <div class="internship-card">
-
-          <h3>Microsoft Internship</h3>
-
-          <p>Role: Web Development Intern</p>
-
-          <p>Duration: 6 Months</p>
-
-          <p>Mode: Online</p>
-
-          <p>Stipend: ₹40,000/month</p>
-
-          <span class="tag">
-            Eligible
-          </span>
-
-          <button class="apply-btn">
-            Apply Now
-          </button>
-
-        </div>
+        <p>Loading internships...</p>
 
       </div>
-
-
+      
       <!-- STATUS -->
 
       <div class="status">
@@ -630,11 +587,119 @@
 
   <script>
 
-    function goHome() {
-      window.location.href = "dashboard.html";
+const API_URL = "http://localhost:5000/api";
+
+function goHome() {
+  window.location.href = "dashboard.html";
+}
+
+async function loadInternships() {
+
+  const internshipList = document.getElementById("internshipList");
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    internshipList.innerHTML = "<p>Please login first.</p>";
+    return;
+  }
+
+  try {
+
+    const response = await fetch(`${API_URL}/internships`, {
+      method: "GET",
+      headers: {
+        "Authorization": "Bearer " + token
+      }
+    });
+
+    const result = await response.json();
+
+    if (!result.success) {
+      throw new Error(result.message || "Failed to load internships");
     }
 
-  </script>
+    const internships = result.data.items || [];
 
+    if (internships.length === 0) {
+      internshipList.innerHTML = "<p>No internships available.</p>";
+      return;
+    }
+
+    internshipList.innerHTML = internships.map(internship => `
+      
+      <div class="internship-card">
+
+        <h3>${internship.title}</h3>
+
+        <p>Company: ${internship.company?.companyName || "N/A"}</p>
+
+        <p>Department: ${internship.department || "N/A"}</p>
+
+        <p>Duration: ${internship.duration || "N/A"}</p>
+
+        <p>Mode: ${internship.workMode || "N/A"}</p>
+
+        <p>Location: ${internship.location || "N/A"}</p>
+
+        <button class="apply-btn" onclick="applyForInternship(${internship.id})">
+          Apply Now
+        </button>
+
+      </div>
+
+    `).join("");
+
+  } catch (error) {
+
+    console.error("Error loading internships:", error);
+
+    internshipList.innerHTML =
+      "<p>Unable to load internships. Please try again.</p>";
+
+  }
+}
+
+
+async function applyForInternship(internshipId) {
+
+  const token = localStorage.getItem("token");
+
+  try {
+
+    const response = await fetch(`${API_URL}/applications`, {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + token
+      },
+
+      body: JSON.stringify({
+        internshipId: internshipId
+      })
+    });
+
+    const result = await response.json();
+
+    if (!result.success) {
+      alert(result.message || "Application failed");
+      return;
+    }
+
+    alert("Application submitted successfully!");
+
+  } catch (error) {
+
+    console.error("Application error:", error);
+
+    alert("Unable to submit application.");
+
+  }
+}
+
+
+loadInternships();
+
+</script>
 </body>
 </html>
