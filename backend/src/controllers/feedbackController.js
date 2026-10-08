@@ -8,7 +8,7 @@ const { requireFields, parseId, parseInteger, optionalText } = require('../utils
 
 // POST /api/feedback  (company gives feedback to a student for one of its internships)
 const createFeedback = asyncHandler(async (req, res) => {
-  requireFields(req.body, ['studentId', 'internshipId', 'rating']);
+  requireFields(req.body, ['studentId', 'internshipId', 'rating', 'comments']);
   const studentId = parseId(req.body.studentId, 'studentId');
   const internshipId = parseId(req.body.internshipId, 'internshipId');
   const rating = parseInteger(req.body.rating, 'Rating', { min: 1, max: 5 });
