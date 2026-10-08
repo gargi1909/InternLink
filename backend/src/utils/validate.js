@@ -15,9 +15,11 @@ const requireFields = (body, fields) => {
 };
 
 // Parses an ID from req.params / body. Throws 400 if not a positive integer.
+// IDs are Prisma Int (32-bit), so anything bigger would make Prisma throw a 500.
+const MAX_ID = 2147483647;
 const parseId = (value, label = 'id') => {
   const id = Number(value);
-  if (!Number.isInteger(id) || id <= 0) {
+  if (!Number.isInteger(id) || id <= 0 || id > MAX_ID) {
     throw new AppError(400, `Invalid ${label}`);
   }
   return id;

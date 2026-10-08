@@ -123,6 +123,19 @@ test('no token -> 401 on company routes', async () => {
   assert.equal((await api('GET', '/feedback/company')).status, 401);
 });
 
+test('malformed, forged and wrong-scheme tokens -> 401', async () => {
+  const jwt = require('jsonwebtoken');
+  const forged = jwt.sign({ id: 1, role: 'COMPANY' }, 'not-the-real-secret');
+  const unsigned = jwt.sign({ id: 1, role: 'COMPANY' }, null, { algorithm: 'none' });
+  for (const token of ['garbage', forged, unsigned]) {
+    const res = await api('GET', '/companies/profile', token);
+    assert.equal(res.status, 401);
+    assert.equal(res.body.success, false);
+  }
+  const basic = await fetch(`${API}/companies/profile`, { headers: { Authorization: `Basic ${tokens.companyA}` } });
+  assert.equal(basic.status, 401);
+});
+
 test('STUDENT, FACULTY and ADMIN get 403 on company-only routes', async () => {
   const routes = [
     ['GET', '/companies/profile'],
@@ -339,6 +352,71 @@ test('work logs: list own only, approve/reject own, other company 403', async ()
   assert.equal((await api('PUT', `/companies/worklogs/${ids.workLogB}/approve`, tokens.companyA)).status, 403);
   assert.equal((await api('PUT', `/companies/worklogs/${ids.workLogB}/reject`, tokens.companyA)).status, 403);
   assert.equal((await prisma.workLog.findUnique({ where: { id: ids.workLogB } })).status, 'PENDING');
+});
+
+// ---------- regression: concurrency and invalid IDs ----------
+
+test('approve + reject sent at the same time: exactly one wins, one notification', async () => {
+  const notifications = () => prisma.notification.count({ where: { userId: ids.student1User, type: { in: ['ATTENDANCE', 'WORKLOG'] } } });
+  const before = await notifications();
+
+  for (let day = 10; day < 15; day += 1) {
+    const attendance = await prisma.attendance.create({
+      data: { studentId: ids.student1, internshipId: ids.internshipA, date: new Date(Date.UTC(2026, 0, day)), hours: 8 },
+    });
+    const workLog = await prisma.workLog.create({
+      data: { studentId: ids.student1, internshipId: ids.internshipA, date: new Date(Date.UTC(2026, 0, day)), description: 'race', hours: 8 },
+    });
+    for (const [url, model, id] of [['attendance', 'attendance', attendance.id], ['worklogs', 'workLog', workLog.id]]) {
+      const results = await Promise.all([
+        api('PUT', `/companies/${url}/${id}/approve`, tokens.companyA),
+        api('PUT', `/companies/${url}/${id}/reject`, tokens.companyA),
+      ]);
+      const statuses = results.map((r) => r.status).sort();
+      assert.deepEqual(statuses, [200, 409], `${url} ${id}: got ${statuses}`);
+      const winner = results.find((r) => r.status === 200).body.data.status;
+      assert.equal((await prisma[model].findUnique({ where: { id } })).status, winner, 'database matches the winning response');
+    }
+  }
+  assert.equal(await notifications(), before + 10, 'one notification per record, not two');
+});
+
+test('complete sent twice at the same time: one 200, one 409', async () => {
+  const internship = await prisma.internship.create({ data: { companyId: ids.companyA, title: `${TAG} race close`, status: 'ACTIVE' } });
+  const results = await Promise.all([
+    api('PUT', `/companies/internships/${internship.id}/complete`, tokens.companyA),
+    api('PUT', `/companies/internships/${internship.id}/complete`, tokens.companyA),
+  ]);
+  assert.deepEqual(results.map((r) => r.status).sort(), [200, 409]);
+});
+
+test('out-of-range and non-numeric IDs -> 400 (not 500)', async () => {
+  const huge = '99999999999';
+  const cases = [
+    ['GET', `/companies/applications/${huge}`],
+    ['PUT', `/companies/applications/${huge}/status`, { status: 'SHORTLISTED' }],
+    ['PUT', `/companies/internships/${huge}`, { title: 'x' }],
+    ['DELETE', `/companies/internships/${huge}`],
+    ['PUT', `/companies/internships/${huge}/complete`],
+    ['PUT', `/companies/attendance/${huge}/approve`],
+    ['PUT', `/companies/worklogs/${huge}/reject`],
+    ['GET', `/companies/attendance?internshipId=${huge}`],
+    ['POST', '/feedback', { studentId: huge, internshipId: ids.internshipA, rating: 5, comments: 'x' }],
+    ['PUT', '/companies/attendance/1.5/approve'],
+    ['PUT', '/companies/worklogs/-3/approve'],
+    ['GET', '/companies/applications/abc'],
+  ];
+  for (const [method, url, body] of cases) {
+    const res = await api(method, url, tokens.companyA, body);
+    assert.equal(res.status, 400, `${method} ${url} should be 400, got ${res.status}`);
+  }
+});
+
+test('missing records -> 404', async () => {
+  assert.equal((await api('PUT', '/companies/attendance/2147483647/approve', tokens.companyA)).status, 404);
+  assert.equal((await api('PUT', '/companies/worklogs/2147483647/approve', tokens.companyA)).status, 404);
+  assert.equal((await api('GET', '/companies/applications/2147483647', tokens.companyA)).status, 404);
+  assert.equal((await api('PUT', '/companies/internships/2147483647/complete', tokens.companyA)).status, 404);
 });
 
 // ---------- feedback ----------

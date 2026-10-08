@@ -58,10 +58,16 @@ const updateProfile = asyncHandler(async (req, res) => {
 // PUT /api/companies/internships/:id/complete  -> marks the internship CLOSED
 const completeInternship = asyncHandler(async (req, res) => {
   const id = parseId(req.params.id);
-  const { internship } = await getOwnedInternship(id, req.user.id);
+  const { company, internship } = await getOwnedInternship(id, req.user.id);
   if (internship.status === 'CLOSED') throw new AppError(409, 'This internship is already completed/closed');
 
-  const updated = await prisma.internship.update({ where: { id }, data: { status: 'CLOSED' } });
+  // Conditional update: if two complete requests arrive together, only one succeeds (and notifies)
+  const { count } = await prisma.internship.updateMany({
+    where: { id, companyId: company.id, status: { not: 'CLOSED' } },
+    data: { status: 'CLOSED' },
+  });
+  if (count === 0) throw new AppError(409, 'This internship is already completed/closed');
+  const updated = await prisma.internship.findUnique({ where: { id } });
 
   // Tell every accepted student
   const accepted = await prisma.application.findMany({
@@ -125,7 +131,13 @@ const reviewAttendance = (newStatus) =>
     const remarks = optionalText(req.body && req.body.remarks, 'Remarks', 1000);
     if (remarks) data.remarks = remarks; // company can leave a note, e.g. reason for rejection
 
-    const updated = await prisma.attendance.update({ where: { id }, data, include: attendanceInclude });
+    // Conditional update: if approve and reject arrive together, only the first one wins
+    const { count } = await prisma.attendance.updateMany({
+      where: { id, status: 'PENDING', internship: { companyId: company.id } },
+      data,
+    });
+    if (count === 0) throw new AppError(409, 'Attendance has already been reviewed');
+    const updated = await prisma.attendance.findUnique({ where: { id }, include: attendanceInclude });
     await notifyUser(
       record.student.userId,
       `Attendance ${newStatus.toLowerCase()}`,
@@ -173,7 +185,13 @@ const reviewWorkLog = (newStatus) =>
     }
     if (log.status !== 'PENDING') throw new AppError(409, `Work log is already ${log.status}`);
 
-    const updated = await prisma.workLog.update({ where: { id }, data: { status: newStatus }, include: workLogInclude });
+    // Conditional update: if approve and reject arrive together, only the first one wins
+    const { count } = await prisma.workLog.updateMany({
+      where: { id, status: 'PENDING', internship: { companyId: company.id } },
+      data: { status: newStatus },
+    });
+    if (count === 0) throw new AppError(409, 'Work log has already been reviewed');
+    const updated = await prisma.workLog.findUnique({ where: { id }, include: workLogInclude });
     await notifyUser(
       log.student.userId,
       `Work log ${newStatus.toLowerCase()}`,
